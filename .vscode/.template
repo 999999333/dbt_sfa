@@ -1,0 +1,55 @@
+        ----------  ids
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "", "Valid_From"]) }} as _id,
+
+        {{ convert_country_to_code("Country_Code") }} as country_id,
+
+        ----------  strings
+
+        ----------  numerics
+
+        ----------  booleans
+
+        ----------  timestamps
+        {{ adapter.quote("Valid_From") }} as valid_from,
+        {{ adapter.quote("Valid_To") }} as valid_to
+        
+        ----------  omited
+
+
+
+
+        ----------  ids
+
+        ----------  strings
+
+        ----------  numerics
+
+        ----------  booleans
+
+        ----------  timestamps
+    
+        ----------  omited
+
+
+
+
+
+
+
+        
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "", "Valid_From"]) }} as _id,
+
+        {{ generate_surrogate_key("OLCard_id", "Valid_To") }},
+
+        {{ config(materialized='ephemeral') }}
+
+
+                {{left_join_date_to_validity(
+            "visit",
+            "outlet_id",
+            "visit_date",
+            "outlet",
+            "outlet_id",
+            "dbt_valid_from",
+            "dbt_valid_to"
+        )}}

@@ -1,0 +1,57 @@
+with source as (
+      select * from {{ source('sfa', 'dbo_Products') }}
+),
+renamed as (
+    select
+        {{ adapter.quote("Country_Code") }},
+        {{ adapter.quote("Product_Id") }},
+        {{ adapter.quote("ProductCode") }},
+        {{ adapter.quote("ProductType_Id") }},
+        {{ adapter.quote("ProductName") }},
+        {{ adapter.quote("ProductShortName") }},
+        {{ adapter.quote("Unit_Id") }},
+        {{ adapter.quote("UnitWeight") }},
+        {{ adapter.quote("Package_QTY") }},
+        {{ adapter.quote("SortOrder") }},
+        {{ adapter.quote("DLM") }},
+        {{ adapter.quote("Status") }},
+        {{ adapter.quote("ULM") }},
+        {{ adapter.quote("Price") }},
+        {{ adapter.quote("IsMix") }},
+        {{ adapter.quote("IsTare") }},
+        {{ adapter.quote("Tare_Id") }},
+        {{ adapter.quote("TarePack_Qty") }},
+        {{ adapter.quote("IsReturnable") }},
+        {{ adapter.quote("IsConcurrent") }},
+        {{ adapter.quote("ProductVolume") }},
+        {{ adapter.quote("IsProductWeight") }},
+        {{ adapter.quote("CertificateNo") }},
+        {{ adapter.quote("CertificateBeginDate") }},
+        {{ adapter.quote("CertificateEndDate") }},
+        {{ adapter.quote("HLCode") }},
+        {{ adapter.quote("IsBonuse") }},
+        {{ adapter.quote("EANCode") }},
+        {{ adapter.quote("LicenseType_ID") }},
+        {{ adapter.quote("ProductBrand_ID") }},
+        {{ adapter.quote("Delisted") }},
+        {{ adapter.quote("Quant_Qty") }},
+        {{ adapter.quote("ProductCode2") }},
+        {{ adapter.quote("SyncToDDB") }},
+        {{ adapter.quote("ServiceBit") }},
+        {{ adapter.quote("IsPromotional") }},
+        {{ adapter.quote("IsLinkedToAllCustomers") }},
+        {{ adapter.quote("FrontWidth") }},
+        {{ adapter.quote("FrontHeight") }},
+        {{ adapter.quote("HasActiveContentFile") }},
+        {{ adapter.quote("IsSeasonal") }},
+        {{ adapter.quote("IsBaseProduct") }},
+        {{ adapter.quote("ForRecognition") }},
+        {{ adapter.quote("IsExchangeBottle") }},
+        {{ adapter.quote("IsPosm") }},
+        {{ adapter.quote("Valid_From") }},
+        {{ adapter.quote("Valid_To") }}
+
+    from source
+)
+select * from renamed
+  

@@ -1,0 +1,41 @@
+version: 2
+
+macros:
+  - name: left_join_date_to_validity
+    description: Expects **country_id in both models!!!** Performs a LEFT JOIN based on matching IDs, date validity, and country ID. 
+    arguments:
+      - name: original_table
+        type: string
+        description: The name of the original table.
+      - name: original_id
+        type: string
+        description: The ID column of the original table.
+      - name: original_date
+        type: string
+        description: The date column of the original table.
+      - name: join_table
+        type: string
+        description: The name of the table to be joined.
+      - name: join_id
+        type: string
+        description: The ID column of the join table.
+      - name: join_valid_from
+        type: string
+        description: The start date column of the join table's validity period.
+      - name: join_valid_to
+        type: string
+        description: The end date column of the join table's validity period.
+      
+  - name: convert_country_to_code
+    description: Converts country abbreviations to specific numerical codes. Returns -1 for null values and -2 for unrecognized values.
+    arguments:
+      - name: country_name
+        type: string
+        description: The column containing the country abbreviations to be converted.
+    
+  - name: add_default_row
+    description: Appends a default row to the specified table based on each column's data type. Numeric types default to `-1`, string types to `'N/A'`, and others to `null`.
+    arguments:
+      - name: model_ref
+        type: string
+        description: The reference to the model (table) to which the default row will be appended.

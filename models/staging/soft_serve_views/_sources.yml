@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: sfa
+    database: DWH_Fabric
+    schema: dbt
+    tables:
+      - name: dbo_Warehouses_v
+      - name: dbo_ContentFiles_v
+      - name: dbo_OutletOrderH_v
+      - name: ps_KPIExecutionFact_v
+      - name: dbo_ResponsesSingleD_v
+      - name: dbo_OutLetsCustomField_v
+      - name: dbo_OutletOrderD_v
+      - name: dbo_OutLets_v
+      - name: dbo_OrganizationalStructure_v
+      - name: dbo_Documents_v
+      - name: dbo_Networks_v
+      - name: dbo_OrganizationalStructureGeographyLinksActive_v
+      - name: dbo_InaccessibilityReasons_v
+      - name: dbo_Customers_v
+      - name: dbo_HReports_v
+      - name: dbo_OutletCardGPS_v
+      - name: dbo_ProductCategory_v
+      - name: ps_KPI_v
+      - name: dbo_StaffOrganizationalStructureLinksActive_v
+      - name: dbo_Staff_v
+      - name: dbo_ProductStocks_v
+      - name: dbo_DocumentSections_v
+      - name: dbo_ResponsesSingleContentD_v
+      - name: dbo_OutletDistribution_v
+      - name: dbo_DocumentItems_v
+      - name: ps_KPIExecutionPlan_v
+      - name: dbo_QuestionnaireVisibleSections_v
+      - name: dbo_ProductGroups_v
+      - name: dbo_QuestionnaireResponseOnVisit_v_v
+      - name: dbo_ResponsesH_v
+      - name: dbo_Products_v
+      - name: dbo_OutLetCardH_v

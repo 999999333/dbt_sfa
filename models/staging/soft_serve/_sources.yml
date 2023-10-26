@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: sfa
+    database: DWH_Fabric
+    schema: dbt
+    tables:
+      - name: dbo_Warehouses      
+      - name: dbo_ContentFiles
+      - name: dbo_OutletOrderH
+      - name: ps_KPIExecutionFact
+      - name: dbo_ResponsesSingleD
+      - name: dbo_OutLetsCustomField
+      - name: dbo_OutletOrderD
+      - name: cust_VisitKPIDataMart
+      - name: dbo_OutLets
+      - name: dbo_OrganizationalStructure
+      - name: cust_OrdersDataMart
+      - name: dbo_Documents
+      - name: dbo_Networks
+      - name: cust_DistributionsDataMart
+      - name: dbo_OrganizationalStructureGeographyLinksActive
+      - name: dbo_InaccessibilityReasons
+      - name: dbo_Customers
+      - name: dbo_OutletCardStartEndImages
+      - name: dbo_HReports
+      - name: cust_SurveyDataMart
+      - name: cust_VisitActivityDataMart
+      - name: dbo_OutletCardGPS
+      - name: dbo_ProductCategory
+      - name: ps_KPI
+      - name: dbo_StaffOrganizationalStructureLinksActive
+      - name: dbo_Staff
+      - name: dbo_ProductStocks
+      - name: dbo_DocumentSections
+      - name: dbo_ResponsesSingleContentD
+      - name: dbo_OutletDistribution
+      - name: dbo_OutletCardSteps
+      - name: dbo_DocumentItems
+      - name: ps_KPIExecutionPlan
+      - name: dbo_QuestionnaireVisibleSections
+      - name: dbo_ProductGroups
+      - name: dbo_QuestionnaireResponseOnVisit_v
+      - name: dbo_ResponsesH
+      - name: dbo_DocumentRules
+      - name: dbo_DocumentRuleParams
+      - name: dbo_Products
+      - name: dbo_OutLetCardH
+      - name: dbo_ProductPromotionActive

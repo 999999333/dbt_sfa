@@ -1,0 +1,76 @@
+{{ config(materialized='ephemeral') }}
+
+
+with source as (
+    select * from {{ source('sfa', 'cust_VisitActivityDataMart') }}
+),
+
+renamed as (
+    select
+        {{ adapter.quote("Country_Code") }},
+        {{ adapter.quote("ORGName1") }},
+        {{ adapter.quote("ORGCode1") }},
+        {{ adapter.quote("ORGName2") }},
+        {{ adapter.quote("ORGCode2") }},
+        {{ adapter.quote("ORGName3") }},
+        {{ adapter.quote("ORGCode3") }},
+        {{ adapter.quote("ORGName4") }},
+        {{ adapter.quote("ORGCode4") }},
+        {{ adapter.quote("ORGName5") }},
+        {{ adapter.quote("ORGCode5") }},
+        {{ adapter.quote("ORGName6") }},
+        {{ adapter.quote("ORGCode6") }},
+        {{ adapter.quote("ORGName7") }},
+        {{ adapter.quote("ORGCode7") }},
+        {{ adapter.quote("SR_Staff") }},
+        {{ adapter.quote("Outlet_SW_code") }},
+        {{ adapter.quote("Outlet_ERP_Code") }},
+        {{ adapter.quote("Outlet_Legal_Name") }},
+        {{ adapter.quote("Outlet_Legal_Address") }},
+        {{ adapter.quote("Outlet_Trading_Name") }},
+        {{ adapter.quote("Outlet_Delivery_Address") }},
+        {{ adapter.quote("Outlet_Status") }},
+        {{ adapter.quote("Outlet_Network") }},
+        {{ adapter.quote("Outlet_Sub_Type") }},
+        {{ adapter.quote("Outlet_Type") }},
+        {{ adapter.quote("Outlet_Group") }},
+        {{ adapter.quote("Start_WD_time") }},
+        {{ adapter.quote("Start_WD_GPS") }},
+        {{ adapter.quote("End_WD_time") }},
+        {{ adapter.quote("End_WD_GPS") }},
+        {{ adapter.quote("Route_Name") }},
+        {{ adapter.quote("Route_Start_date") }},
+        {{ adapter.quote("Route_End_date") }},
+        {{ adapter.quote("Visit_ID") }},
+        {{ adapter.quote("Visit_commentary") }},
+        {{ adapter.quote("Visit_date") }},
+        {{ adapter.quote("Visit_week") }},
+        {{ adapter.quote("Visit_month") }},
+        {{ adapter.quote("Visit_type") }},
+        {{ adapter.quote("Visit_quick_order") }},
+        {{ adapter.quote("Visit_reason_of_unavailability") }},
+        {{ adapter.quote("Visit_Plan") }},
+        {{ adapter.quote("Visit_Fact_in_route") }},
+        {{ adapter.quote("Visit_Fact") }},
+        {{ adapter.quote("Productive_visit") }},
+        {{ adapter.quote("Visit_start_time") }},
+        {{ adapter.quote("Visit_end_time") }},
+        {{ adapter.quote("Visit_duration_min") }},
+        {{ adapter.quote("Visit_travel_time_min") }},
+        {{ adapter.quote("POS_Equipment_activity_time") }},
+        {{ adapter.quote("Inventoryzation_activity_time") }},
+        {{ adapter.quote("Surveys_activity_time") }},
+        {{ adapter.quote("GPS_coordinates_of_the_visit_start") }},
+        {{ adapter.quote("GPS_deviation_of_coordinates_of_the_visit_start_m") }},
+        {{ adapter.quote("GPS_coordinates_of_the_visit_end") }},
+        {{ adapter.quote("GPS_deviation_of_coordinates_of_the_visit_end_m") }},
+        {{ adapter.quote("OrgStructureID") }},
+        {{ adapter.quote("Cust_id") }},
+        {{ adapter.quote("MonthID") }},
+        {{ adapter.quote("Valid_From") }},
+        {{ adapter.quote("Valid_To") }}
+
+    from source
+)
+
+select * from renamed

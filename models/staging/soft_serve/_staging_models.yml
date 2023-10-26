@@ -1,0 +1,406 @@
+models:
+  - name: stg_sfa__customers
+    description: "Base model for customers"
+    columns:
+      - name: converted
+        data_type: bigint
+        description: "ahoj jak se mas"
+
+      - name: country_code
+        data_type: varchar
+        description: "popisek"
+
+      - name: customer_id
+        data_type: bigint
+        description: ""
+
+      - name: customer_name
+        data_type: varchar
+        description: ""
+
+      - name: customer_trading_name
+        data_type: varchar
+        description: ""
+
+      - name: zkpo
+        data_type: varchar
+        description: ""
+
+      - name: mfo
+        data_type: varchar
+        description: ""
+
+      - name: bank_account
+        data_type: varchar
+        description: ""
+
+      - name: tax_number
+        data_type: varchar
+        description: ""
+
+      - name: vat_number
+        data_type: varchar
+        description: ""
+
+      - name: customer_adress
+        data_type: varchar
+        description: ""
+
+      - name: customer_trading_address
+        data_type: varchar
+        description: ""
+
+      - name: bank_name
+        data_type: varchar
+        description: ""
+
+      - name: director
+        data_type: varchar
+        description: ""
+
+      - name: city_id
+        data_type: bigint
+        description: ""
+
+      - name: email
+        data_type: varchar
+        description: ""
+
+      - name: phone
+        data_type: varchar
+        description: ""
+
+      - name: trading_phone
+        data_type: varchar
+        description: ""
+
+      - name: comments
+        data_type: varchar
+        description: ""
+
+      - name: distributor_id
+        data_type: bigint
+        description: ""
+
+      - name: passwd
+        data_type: varchar
+        description: ""
+
+      - name: dlm
+        data_type: datetime2
+        description: ""
+
+      - name: status
+        data_type: bigint
+        description: ""
+
+      - name: payformminvalue
+        data_type: bigint
+        description: ""
+
+      - name: payformcurrentvalue
+        data_type: bigint
+        description: ""
+
+      - name: payformmaxvalue
+        data_type: bigint
+        description: ""
+
+      - name: discountminvalue
+        data_type: bigint
+        description: ""
+
+      - name: discountcurrentvalue
+        data_type: bigint
+        description: ""
+
+      - name: discountmaxvalue
+        data_type: bigint
+        description: ""
+
+      - name: lastsyncdatetime
+        data_type: datetime2
+        description: ""
+
+      - name: renewsupervisorpasswd
+        data_type: bit
+        description: ""
+
+      - name: renewadminpasswd
+        data_type: bit
+        description: ""
+
+      - name: ulm
+        data_type: bigint
+        description: ""
+
+      - name: desktopoutletminvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktopoutletcurrentvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktopoutletmaxvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktoporderminvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktopordercurrentvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktopordermaxvalue
+        data_type: bigint
+        description: ""
+
+      - name: merchminvalue
+        data_type: bigint
+        description: ""
+
+      - name: merchmaxvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktoprouteminvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktoproutecurrentvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktoproutemaxvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktopvisitminvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktopvisitcurrentvalue
+        data_type: bigint
+        description: ""
+
+      - name: desktopvisitmaxvalue
+        data_type: bigint
+        description: ""
+
+      - name: checkschedule
+        data_type: varchar
+        description: ""
+
+      - name: area_id
+        data_type: bigint
+        description: ""
+
+      - name: ieconfiguration
+        data_type: varchar
+        description: ""
+
+      - name: salesorgcode
+        data_type: varchar
+        description: ""
+
+      - name: isblocked
+        data_type: bit
+        description: ""
+
+      - name: syncinprogress
+        data_type: bit
+        description: ""
+
+      - name: outlet_id
+        data_type: bigint
+        description: ""
+
+      - name: geography_id
+        data_type: varchar
+        description: ""
+
+      - name: is2levelmode
+        data_type: bit
+        description: ""
+
+      - name: warehousebaseid
+        data_type: varchar
+        description: ""
+
+      - name: externalcode
+        data_type: varchar
+        description: ""
+
+      - name: database_id
+        data_type: bigint
+        description: ""
+
+      - name: isinexchangeequipment
+        data_type: bit
+        description: ""
+
+      - name: valid_from
+        data_type: date
+        description: ""
+
+      - name: valid_to
+        data_type: date
+        description: ""
+
+  - name: stg_sfa__visit_inaccessibility_reasons
+    description: "This model transforms the source table `sfa__visit_inaccessibility_reasons_snapshot` with various transformations."
+    columns:
+      - name: dbt_scd_id
+        description: "{{ doc('dbt_scd_id') }}"
+      - name: inaccessibility_reason_id
+        description: "{{ doc('inaccessibility_reason_id') }}"
+      - name: inaccessibility_reason_external_code
+        description: "{{ doc('inaccessibility_reason_external_code') }}"
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: inaccessibility_reason
+        description: "{{ doc('inaccessibility_reason') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: status
+        description: "{{ doc('sfa_status') }}"
+      - name: ulm
+        description: "{{ doc('ulm') }}"
+      - name: dlm
+        description: "{{ doc('dlm') }}"
+      - name: dbt_valid_from
+        description: "{{ doc('dbt_valid_from') }}"
+      - name: dbt_valid_to
+        description: "{{ doc('dbt_valid_to') }}"
+
+  - name: stg_sfa__questionnaires
+    description: "This model transforms the source table `sfa__documents_snapshot` with various transformations."
+    columns:
+      - name: dbt_scd_id
+        description: "{{ doc('dbt_scd_id') }}"
+      - name: questionnaire_id
+        description: "{{ doc('questionnaire_id') }}"
+      - name: questionnaire_key
+        description: "{{ doc('questionnaire_key') }}"
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: questionnaire_name
+        description: "{{ doc('questionnaire_name') }}"
+      - name: questionnaire_details
+        description: "{{ doc('questionnaire_details') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: questionnaire_external_code
+        description: "{{ doc('questionnaire_external_code') }}"
+      - name: questionnaire_pass_score
+        description: "{{ doc('questionnaire_pass_score') }}"
+      - name: questionnaire_status
+        description: "{{ doc('sfa_status') }}"
+      - name: dlm
+        description: "{{ doc('dlm') }}"
+      - name: dbt_valid_from
+        description: "{{ doc('dbt_valid_from') }}"
+      - name: dbt_valid_to
+        description: "{{ doc('dbt_valid_to') }}"
+
+  - name: stg_sfa__questionnaire_items
+    description: "This model transforms the source table `sfa__questionnaire_items_snapshot` with various transformations."
+    columns:
+      - name: dbt_scd_id
+        description: "{{ doc('dbt_scd_id') }}"
+      - name: questionnaire_question_id
+        description: "{{ doc('questionnaire_question_id') }}"
+      - name: questionnaire_question_key
+        description: "{{ doc('questionnaire_question_key') }}"
+      - name: questionnaire_section_id
+        description: "{{ doc('questionnaire_section_id') }}"
+      - name: questionnaire_section_key
+        description: "{{ doc('questionnaire_section_key') }}"
+      - name: questionnaire_question_standard_id
+        description: "{{ doc('questionnaire_question_standard_id') }}"
+      - name: questionnaire_question_standard_key
+        description: "{{ doc('questionnaire_question_standard_key') }}"
+      - name: questionnaire_question_bo_id
+        description: "{{ doc('sfa_bo_id') }}"
+      - name: questionnaire_question_bo_key
+        description: "{{ doc('sfa_bo_key') }}"
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: questionnaire_question
+        description: "{{ doc('questionnaire_question') }}"
+      - name: questionnaire_question_target_value
+        description: "{{ doc('questionnaire_question_target_value') }}"
+      - name: questionnaire_question_sort_order
+        description: "{{ doc('questionnaire_question_sort_order') }}"
+      - name: questionnaire_question_external_code
+        description: "{{ doc('questionnaire_question_external_code') }}"
+      - name: questionnaire_question_weight
+        description: "{{ doc('questionnaire_question_weight') }}"
+      - name: questionnaire_question_status
+        description: "{{ doc('sfa_status') }}"
+      - name: questionnaire_question_response_format
+        description: "{{ doc('questionnaire_question_response_format') }}"
+      - name: questionnaire_question_has_use_previous_answer
+        description: "{{ doc('questionnaire_question_has_use_previous_answer') }}"
+      - name: questionnaire_question_is_read_only
+        description: "{{ doc('questionnaire_question_is_read_only') }}"
+      - name: questionnaire_question_is_distribution
+        description: "{{ doc('questionnaire_question_is_distribution') }}"
+      - name: dlm
+        description: "{{ doc('dlm') }}"
+      - name: dbt_valid_from
+        description: "{{ doc('dbt_valid_from') }}"
+      - name: dbt_valid_to
+        description: "{{ doc('dbt_valid_to') }}"
+
+  - name: stg_sfa__questionnaire_sections
+    description: "This model transforms the source table with various transformations."
+    columns:
+      - name: dbt_scd_id
+        description: "{{ doc('dbt_scd_id') }}"
+      - name: questionnaire_section_id
+        description: "{{ doc('questionnaire_section_id') }}"
+      - name: questionnaire_section_key
+        description: "{{ doc('questionnaire_section_key') }}"
+      - name: questionnaire_section_parent_id
+        description: "{{ doc('questionnaire_section_parent_id') }}"
+      - name: questionnaire_section_parent_key
+        description: "{{ doc('questionnaire_section_parent_key') }}"
+      - name: questionnaire_id
+        description: "{{ doc('questionnaire_id') }}"
+      - name: questionnaire_key
+        description: "{{ doc('questionnaire_key') }}"
+      - name: questionnaire_section_bo_id
+        description: "{{ doc('sfa_bo_id') }}"
+      - name: questionnaire_section_bo_key
+        description: "{{ doc('sfa_bo_key') }}"
+      - name: country_id
+        description: "{{ doc('country_id') }}"
+      - name: questionnaire_section_name
+        description: "{{ doc('questionnaire_section_name') }}"
+      - name: questionnaire_section_external_code
+        description: "{{ doc('questionnaire_section_external_code') }}"
+      - name: questionnaire_section_level
+        description: "{{ doc('questionnaire_section_level') }}"
+      - name: questionnaire_section_sort_order
+        description: "{{ doc('questionnaire_section_sort_order') }}"
+      - name: questionnaire_section_grouping_type
+        description: "{{ doc('questionnaire_section_grouping_type') }}"
+      - name: questionnaire_section_status
+        description: "{{ doc('sfa_status') }}"
+      - name: is_call_button
+        description: "{{ doc('is_call_button') }}"
+      - name: is_photo_report
+        description: "{{ doc('is_photo_report') }}"
+      - name: dlm
+        description: "{{ doc('dlm') }}"
+      - name: dbt_valid_from
+        description: "{{ doc('dbt_valid_from') }}"
+      - name: dbt_valid_to
+        description: "{{ doc('dbt_valid_to') }}"
+

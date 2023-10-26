@@ -1,0 +1,13 @@
+config:
+  partial_parse: true
+AzureSQL:
+  target: fabric-dev
+  outputs:    
+    fabric-dev:
+      authentication: CLI
+      database: DWH_Fabric
+      driver: ODBC Driver 18 for SQL Server
+      host: rdtlpqrjbtvexhmk4sv32b4glq-wnbcc2jzz4cu5agv3s4kfoph4a.datawarehouse.pbidedicated.windows.net
+      schema: dbt
+      threads: 4
+      type: fabric

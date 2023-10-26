@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_images
+    description: "Consists of images from SFA application, that belongs to questionnaires. It provied names of each file and metadata. Data are stored on servers hosted by Soft Serve."
+      
+
+  - name: dim_questions
+    description: "Provides all questions inluded in SFA application. They have hierarchy, but for ease of use they are in the single table. **Questionnaire->Section->Question**. "
+
+  
+  - name: fact_visit
+    description: "Main fact table in the making..."
+
+  - name: fact_questionnaire_responses
+    description: "Provides all answers and references to question asked, visit and data with according `_id`."
+
+  - name: inaccessibility_reasons
+    description: "Dimension of reasons, why there were planned visit not realised."
