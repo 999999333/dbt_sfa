@@ -21,6 +21,10 @@ outlet as (
     select * from {{ ref('stg_sfa__outlets') }}
 ),
 
+customer as (
+    select * from {{ ref('stg_sfa__customers') }}
+),
+
 inaccessibility_reason as (
     select * from {{ ref('stg_sfa__visit_inaccessibility_reasons') }}
 
@@ -32,9 +36,10 @@ final as (
         visit.visit_key,
         visit.visit_date,
         visit.country_id,
-        organizational_structure.dbt_scd_id as organizational_structure_key,
-        outlet.dbt_scd_id as outlet_key,
-        inaccessibility_reason.dbt_scd_id as inaccessibility_reason_key
+        organizational_structure.dbt_scd_id as organizational_structure_id,
+        outlet.dbt_scd_id as outlet_id,
+        inaccessibility_reason.dbt_scd_id as inaccessibility_reason_id,
+        customer.dbt_scd_id as customer_id
 
         -- organizational_structure.structure_name,
         -- organizational_structure.structure_whole_node_tree,
@@ -80,6 +85,16 @@ final as (
             "visit_date",
             "inaccessibility_reason",
             "inaccessibility_reason_id",
+            "dbt_valid_from",
+            "dbt_valid_to"
+        )}}
+
+                {{left_join_date_to_validity(
+            "visit",
+            "customer_id",
+            "visit_date",
+            "customer",
+            "customer_id",
             "dbt_valid_from",
             "dbt_valid_to"
         )}}

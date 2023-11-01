@@ -9,16 +9,8 @@ with source as (
 
 renamed as (
     select
-        {{ adapter.quote("Status") }} as status,
-        cast({{ adapter.quote("PayFormMinValue") }} as INT) as payform_min_value,
-        cast({{ adapter.quote("PayFormCurrentValue") }} as INT) as payform_current_value,
-        cast({{ adapter.quote("PayFormMaxValue") }} as INT) as payform_max_value,
-        cast({{ adapter.quote("DiscountMinValue") }} as INT) as discount_min_value,
-        cast({{ adapter.quote("DiscountCurrentValue") }} as INT) as discount_current_value,
-        cast({{ adapter.quote("DiscountMaxValue") }} as INT) as discount_max_value,
-        {{ adapter.quote("LastSyncDateTime") }},
-        {{ adapter.quote("RenewSupervisorPasswd") }},
-        {{ adapter.quote("RenewAdminPasswd") }},
+
+
         {{ adapter.quote("ULM") }} as ulm,
         {{ adapter.quote("DesktopOutletMinValue") }},
         {{ adapter.quote("DesktopOutletCurrentValue") }},
@@ -26,26 +18,14 @@ renamed as (
         {{ adapter.quote("DesktopOrderMinValue") }},
         {{ adapter.quote("DesktopOrderCurrentValue") }},
         {{ adapter.quote("DesktopOrderMaxValue") }},
-        {{ adapter.quote("MerchMinValue") }},
-        {{ adapter.quote("MerchMaxValue") }},
-        {{ adapter.quote("DesktopRouteMinValue") }},
-        {{ adapter.quote("DesktopRouteCurrentValue") }},
-        {{ adapter.quote("DesktopRouteMaxValue") }},
-        {{ adapter.quote("DesktopVisitMinValue") }},
-        {{ adapter.quote("DesktopVisitCurrentValue") }},
-        {{ adapter.quote("DesktopVisitMaxValue") }},
-        {{ adapter.quote("CheckSchedule") }},
-
-        {{ adapter.quote("IEConfiguration") }},
-        {{ adapter.quote("SalesOrgCode") }},
-
-        {{ adapter.quote("SyncInProgress") }},
 
 
 
         ----------  ids
+        {{ adapter.quote("dbt_scd_id") }} as dbt_scd_id,
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "Cust_Id", "dbt_valid_from"]) }} as _id,
         {{ adapter.quote("Cust_Id") }} as customer_id,
+
         {{ adapter.quote("OL_id") }} as outlet_id,
         {{ adapter.quote("ExternalCode") }} outlet_external_code,
         {{ adapter.quote("DB_ID") }} as database_id,
@@ -73,10 +53,17 @@ renamed as (
         {{ adapter.quote("Phone") }} as phone,
         {{ adapter.quote("TradingPhone") }} as trading_phone,
         {{ adapter.quote("Comments") }} as comments,
-        {{ adapter.quote("Passwd") }} as passwd,
+        {{ adapter.quote("Passwd") }} as password,
 
         ----------  numerics
-
+        {{ adapter.quote("Status") }} as status,
+        cast({{ adapter.quote("PayFormMinValue") }} as INT) as payform_min_value,
+        cast({{ adapter.quote("PayFormCurrentValue") }} as INT) as payform_current_value,
+        cast({{ adapter.quote("PayFormMaxValue") }} as INT) as payform_max_value,
+        cast({{ adapter.quote("DiscountMinValue") }} as INT) as discount_min_value,
+        cast({{ adapter.quote("DiscountCurrentValue") }} as INT) as discount_current_value,
+        cast({{ adapter.quote("DiscountMaxValue") }} as INT) as discount_max_value,
+        
         ----------  booleans
         {{ adapter.quote("IsBlocked") }},
         {{ adapter.quote("Is2LevelMode") }},
@@ -88,6 +75,24 @@ renamed as (
         {{ adapter.quote("dbt_valid_to") }} as valid_to
         
         ----------  omited
+        -- {{ adapter.quote("MerchMinValue") }},
+        -- {{ adapter.quote("MerchMaxValue") }},
+        -- {{ adapter.quote("DesktopRouteMinValue") }},
+        -- {{ adapter.quote("DesktopRouteCurrentValue") }},
+        -- {{ adapter.quote("DesktopRouteMaxValue") }},
+        -- {{ adapter.quote("DesktopVisitMinValue") }},
+        -- {{ adapter.quote("DesktopVisitCurrentValue") }},
+        -- {{ adapter.quote("DesktopVisitMaxValue") }},
+        -- {{ adapter.quote("CheckSchedule") }},
+        -- {{ adapter.quote("IEConfiguration") }},
+        -- {{ adapter.quote("SalesOrgCode") }},
+        -- {{ adapter.quote("SyncInProgress") }},
+        -- {{ adapter.quote("LastSyncDateTime") }},
+        -- {{ adapter.quote("RenewSupervisorPasswd") }},
+        -- {{ adapter.quote("RenewAdminPasswd") }},
+
+
+
     from
         source
 )
