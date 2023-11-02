@@ -30,6 +30,8 @@ inaccessibility_reason as (
 
 ),
 
+
+
 final as (
     select
         visit.visit_id, -- PRIDAT LOGIKU AT VYBERY JEN NEJNOVEJSI
@@ -89,7 +91,7 @@ final as (
             "dbt_valid_to"
         )}}
 
-                {{left_join_date_to_validity(
+        {{left_join_date_to_validity(
             "visit",
             "customer_id",
             "visit_date",
@@ -98,6 +100,7 @@ final as (
             "dbt_valid_from",
             "dbt_valid_to"
         )}}
+
 )
 
 select * from final

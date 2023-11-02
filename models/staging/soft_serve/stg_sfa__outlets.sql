@@ -70,7 +70,7 @@ renamed as (
         {{ adapter.quote("OLEMail") }} as outlet_email,
         {{ adapter.quote("OLAccountant") }} as outlet_accountant,
         {{ adapter.quote("OLAccountantPhone") }} as outlet_accountant_phone,
-        {{ adapter.quote("OLMarkManager") }} as outlet_markteting,
+        {{ adapter.quote("OLMarkManager") }} as outlet_marketing,
         {{ adapter.quote("OLMarkManagerPhone") }} as outlet_marketing_phone,
         {{ adapter.quote("OLPurchManager") }} as outlet_purchasing,
         {{ adapter.quote("ZKPO") }},

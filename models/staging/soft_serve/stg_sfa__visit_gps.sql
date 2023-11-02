@@ -26,7 +26,7 @@ renamed as (
         {{ adapter.quote("Valid_To") }} as valid_to
 
         ----------  omited
-        --{{ adapter.quote("DLM") }},
+        -- {{ adapter.quote("DLM") }},
 
     from source
 )

@@ -6,25 +6,27 @@ renamed as (
     select
 
         ----------  ids
-        {{ generate_surrogate_key("OLCard_ID", "Valid_To") }},
-        {{ adapter.quote("OLCard_ID") }} as visit_id,
-        {{ adapter.quote("Product_id") }} as product_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "OlCard_id"]) }} as visit_id,
+        {{ adapter.quote("OLCard_ID") }} as visit_key,
+
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Product_id"]) }} as product_id,
+        {{ adapter.quote("Product_id") }} as product_key,
+
         {{ convert_country_to_code("Country_Code") }} as country_id,
 
         ----------  strings
 
         ----------  numerics
-
+        {{ adapter.quote("Price") }} as price,
         ----------  booleans
-        {{ adapter.quote("IsPresent") }},
+        {{ adapter.quote("IsPresent") }} as is_present,
+        {{ adapter.quote("IsSetup") }} as is_setup,
 
         ----------  timestamps
         {{ adapter.quote("Valid_From") }},
         {{ adapter.quote("Valid_To") }}
 
         ----------  omited
-        -- {{ adapter.quote("Price") }},
-        -- {{ adapter.quote("IsSetup") }},
         -- {{ adapter.quote("OutOfStockReason") }},        
 
     from source

@@ -3,19 +3,13 @@ with source as (
 ),
 renamed as (
     select
-        {{ adapter.quote("Country_Code") }},
-        {{ adapter.quote("Product_Id") }},
-        {{ adapter.quote("ProductCode") }},
         {{ adapter.quote("ProductType_Id") }},
-        {{ adapter.quote("ProductName") }},
-        {{ adapter.quote("ProductShortName") }},
         {{ adapter.quote("Unit_Id") }},
         {{ adapter.quote("UnitWeight") }},
         {{ adapter.quote("Package_QTY") }},
         {{ adapter.quote("SortOrder") }},
         {{ adapter.quote("DLM") }},
         {{ adapter.quote("Status") }},
-        {{ adapter.quote("ULM") }},
         {{ adapter.quote("Price") }},
         {{ adapter.quote("IsMix") }},
         {{ adapter.quote("IsTare") }},
@@ -47,9 +41,32 @@ renamed as (
         {{ adapter.quote("IsBaseProduct") }},
         {{ adapter.quote("ForRecognition") }},
         {{ adapter.quote("IsExchangeBottle") }},
-        {{ adapter.quote("IsPosm") }},
         {{ adapter.quote("Valid_From") }},
         {{ adapter.quote("Valid_To") }}
+
+        ----------  ids
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Product_id"]) }} as product_id,
+        {{ adapter.quote("Product_Id") }} as product_key,
+
+        {{ adapter.quote("ProductCode") }} as product_code,
+
+        {{ convert_country_to_code("Country_Code") }} as country_id,
+        {{ adapter.quote("Country_Code") }} as country_code,
+
+        ----------  strings
+        {{ adapter.quote("ProductName") }} as product_name,
+        {{ adapter.quote("ProductShortName") }} as product_name_short,
+
+        ----------  numerics
+
+        ----------  booleans
+        {{ adapter.quote("IsPosm") }} as is_pos_material,
+
+        ----------  timestamps
+    
+        ----------  omited
+        {{ adapter.quote("ULM") }},
+
 
     from source
 )
