@@ -1,10 +1,17 @@
+{{
+    config(
+        materialized = 'table'
+    )
+}}
+
+
 with outlet as (
     select * from {{ ref('stg_sfa__outlets') }}
 ),
 
 custom_field as (
     select * from {{ ref('stg_sfa__outlet_custom_fields')}}
-)
+),
 
 final as (
     select

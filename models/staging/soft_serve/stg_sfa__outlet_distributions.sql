@@ -6,7 +6,7 @@ renamed as (
     select
 
         ----------  ids
-        {{ dbt_utils.generate_surrogate_key(["Country_Code", "OlCard_id"]) }} as visit_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "OLCard_ID"]) }} as visit_id,
         {{ adapter.quote("OLCard_ID") }} as visit_key,
 
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "Product_id"]) }} as product_id,
@@ -19,7 +19,10 @@ renamed as (
         ----------  numerics
         {{ adapter.quote("Price") }} as price,
         ----------  booleans
-        {{ adapter.quote("IsPresent") }} as is_present,
+        case
+            when {{ adapter.quote("IsPresent") }} = '1' then 1
+            else 0
+        end as is_present,
         {{ adapter.quote("IsSetup") }} as is_setup,
 
         ----------  timestamps

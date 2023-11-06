@@ -9,8 +9,10 @@ renamed as (
         ----------  ids
         {{ adapter.quote("dbt_scd_id") }} as dbt_scd_id,
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "OrgStructureID"]) }} as _id,
+
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "OrgStructureID"]) }} as organizational_structure_id,
         {{ adapter.quote("OrgStructureID") }} as organizational_structure_key,
+        
         {{ adapter.quote("ParentID") }} as parent_structure_id,
         {{ adapter.quote("NodeId") }} as structure_node_id,
         {{ adapter.quote("Level") }}  as structure_node_level,

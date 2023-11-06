@@ -23,15 +23,15 @@ final as (
         phone,
         trading_phone,
         comments,
-        passwords,
+        password,
 
         ----------  numerics
 
         ----------  booleans
 
         ----------  timestamps
-        dbt_valid_from,
-        dbt_valid_to    
+        valid_from,
+        valid_to    
 
         ----------  omited
 

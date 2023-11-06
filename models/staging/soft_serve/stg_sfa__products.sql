@@ -1,6 +1,7 @@
 with source as (
       select * from {{ source('sfa', 'dbo_Products') }}
 ),
+
 renamed as (
     select
         {{ adapter.quote("ProductType_Id") }},
@@ -41,11 +42,10 @@ renamed as (
         {{ adapter.quote("IsBaseProduct") }},
         {{ adapter.quote("ForRecognition") }},
         {{ adapter.quote("IsExchangeBottle") }},
-        {{ adapter.quote("Valid_From") }},
-        {{ adapter.quote("Valid_To") }}
+
 
         ----------  ids
-        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Product_id"]) }} as product_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Product_Id"]) }} as product_id,
         {{ adapter.quote("Product_Id") }} as product_key,
 
         {{ adapter.quote("ProductCode") }} as product_code,
@@ -63,9 +63,11 @@ renamed as (
         {{ adapter.quote("IsPosm") }} as is_pos_material,
 
         ----------  timestamps
-    
+        {{ adapter.quote("Valid_From") }},
+        {{ adapter.quote("Valid_To") }}
+
         ----------  omited
-        {{ adapter.quote("ULM") }},
+        -- {{ adapter.quote("ULM") }}
 
 
     from source

@@ -39,21 +39,25 @@ final as (
         visit.visit_date,
         visit.country_id,
         organizational_structure.dbt_scd_id as organizational_structure_id,
+        organizational_structure.organizational_structure_id as orgstructureID,
+        visit.organizational_structure_id as visitorgstrucutreID,
         outlet.dbt_scd_id as outlet_id,
-        inaccessibility_reason.dbt_scd_id as inaccessibility_reason_id,
-        customer.dbt_scd_id as customer_id
+        organizational_structure.organizational_structure_key,
+        -- inaccessibility_reason.inaccessibility_reason_key
+        -- inaccessibility_reason.dbt_scd_id as inaccessibility_reason_id
+        -- customer.dbt_scd_id as customer_id
 
-        -- organizational_structure.structure_name,
-        -- organizational_structure.structure_whole_node_tree,
-        -- organizational_structure.structure_name_detail,
+        organizational_structure.structure_name,
+        organizational_structure.structure_whole_node_tree,
+        organizational_structure.structure_name_detail,
         -- visit.outlet_id,
         -- outlet.outlet_name,
         -- outlet.outlet_sap_code,
-        -- visit.visit_start_time,
-        -- visit.visit_end_time,
-        -- visit.visit_start_distance,
-        -- visit.visit_end_distance,
-        -- visit.is_quick_order,
+        visit.visit_start_time,
+        visit.visit_end_time,
+        visit.visit_start_distance,
+        visit.visit_end_distance,
+        visit.is_quick_order
         -- inaccessibility_reason.inaccessibility_reason,
         -- visit.route_id
 
@@ -81,25 +85,8 @@ final as (
             "dbt_valid_to"
         )}}
 
-        {{left_join_date_to_validity(
-            "visit",
-            "inaccessibility_reason_id",
-            "visit_date",
-            "inaccessibility_reason",
-            "inaccessibility_reason_id",
-            "dbt_valid_from",
-            "dbt_valid_to"
-        )}}
+    where visit.valid_to = cast('{{ var("future_proof_date") }}' as datetime)
 
-        {{left_join_date_to_validity(
-            "visit",
-            "customer_id",
-            "visit_date",
-            "customer",
-            "customer_id",
-            "dbt_valid_from",
-            "dbt_valid_to"
-        )}}
 
 )
 

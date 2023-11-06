@@ -1,3 +1,10 @@
+{{
+    config(
+        materialized = 'table'
+    )
+}}
+
+
 with outlet_distribution as (
     select * from {{ ref('stg_sfa__outlet_distributions')}}
 ),
@@ -6,8 +13,14 @@ product as (
     select * from {{ ref('stg_sfa__products')}}
 ),
 
+visit as (
+    select * from {{ ref('stg_sfa__visits_v')}}
+),
+
 final as (
     select 
+        visit.visit_date,
+        visit.outlet_id,
         outlet_distribution.visit_id,
         outlet_distribution.product_id,
         outlet_distribution.country_id,
@@ -19,9 +32,12 @@ final as (
 
     from
         outlet_distribution
-    left join
+    left outer join
         product
-    on outlet_distribution.product_id = product.product_id
+        on outlet_distribution.product_id = product.product_id
+    left outer join
+        visit
+        on outlet_distribution.visit_id = visit.visit_id
 
     
 )

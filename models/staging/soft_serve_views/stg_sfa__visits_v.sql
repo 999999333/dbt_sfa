@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ ref('sfa__visits_snapshot') }}
+    select * from {{ source("sfa", "dbo_OutLetCardH_v") }}
 ),
 
 renamed as (
@@ -63,10 +63,7 @@ renamed as (
         {{ adapter.quote("BeginTime") }} as visit_start_time,
         {{ adapter.quote("EndTime") }} as visit_end_time,
         {{ adapter.quote("EndTimeChange") }} as visit_end_time_edit,
-        {{ adapter.quote("DLM") }} as dlm,
-        dbt_valid_from as valid_from,
-        coalesce("dbt_valid_to", cast('{{ var("future_proof_date") }}' as datetime)) as valid_to
-
+        {{ adapter.quote("DLM") }} as dlm
         
         ----------  omited
         -- {{ adapter.quote("OLCardType") }},

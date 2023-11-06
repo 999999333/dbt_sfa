@@ -37,14 +37,15 @@ final as (
         visit.visit_date,
         organizational_structure.structure_whole_node_tree,
         organizational_structure.structure_name_detail,
-        outlet.outlet_name,
-        outlet.outlet_sap_code,
+        -- outlet.outlet_name,
+        -- outlet.outlet_sap_code,
         visit.visit_start_time,
         visit.visit_end_time,
         visit.visit_start_distance,
         visit.visit_end_distance,
         visit.is_quick_order,
-        inaccessibility_reason.inaccessibility_reason,
+        -- inaccessibility_reason.inaccessibility_reason,
+        -- inaccessibility_reason.inaccessibility_reason_key,
         visit.route_id
 
 
@@ -65,10 +66,10 @@ final as (
     on visit_with_db_ids.visit_id = visit.visit_id
     left join organizational_structure
     on visit_with_db_ids.organizational_structure_key = organizational_structure.dbt_scd_id
-    left join inaccessibility_reason
-    on visit_with_db_ids.inaccessibility_reason_key = inaccessibility_reason.dbt_scd_id
-    left join outlet
-    on visit_with_db_ids.outlet_key = outlet.dbt_scd_id
+    -- left join inaccessibility_reason
+    -- on visit_with_db_ids.inaccessibility_reason_key = inaccessibility_reason.dbt_scd_id
+    -- left join outlet
+    -- on visit_with_db_ids.outlet_key = outlet.dbt_scd_id
 
 )
 

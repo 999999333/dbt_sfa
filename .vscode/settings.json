@@ -7,5 +7,5 @@
     "dbt.queryLimit": 500,
     "dbt.enableNewLineagePanel": true,
     "turntable.dbtVersion": "1.6",
-    "turntable.warehouse": "other"
+    "turntable.warehouse": "databricks"
 }
