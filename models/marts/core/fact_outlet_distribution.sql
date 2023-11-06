@@ -10,7 +10,7 @@ with outlet_distribution as (
 ),
 
 product as (
-    select * from {{ ref('stg_sfa__products')}}
+    select * from {{ ref('stg_sfa__products_v')}}
 ),
 
 visit as (
@@ -38,8 +38,7 @@ final as (
     left outer join
         visit
         on outlet_distribution.visit_id = visit.visit_id
-
-    
+   
 )
 
 select * from final

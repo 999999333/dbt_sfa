@@ -6,16 +6,21 @@
 
 
 with outlet as (
-    select * from {{ ref('stg_sfa__outlets') }}
+    select * from {{ ref('stg_sfa__outlets_v') }}
 ),
 
 custom_field as (
-    select * from {{ ref('stg_sfa__outlet_custom_fields')}}
+    select * from {{ ref('stg_sfa__outlet_custom_fields_v')}}
+),
+
+organizational_structure as (
+    select * from {{ ref('stg_sfa__organization_structures_v') }}
 ),
 
 final as (
     select
         outlet.outlet_name,
+        outlet.outlet_id,
         outlet.outlet_adress,
         outlet.outlet_email,
         outlet.country_id,
@@ -36,6 +41,8 @@ final as (
     left join
         custom_field
         on outlet.outlet_id = custom_field.outlet_id
+
+    -- Pridat org. structure
 )
 
 select * from final

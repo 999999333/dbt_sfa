@@ -28,9 +28,9 @@ final as(
         outlet_id,
         product_id,
         case
-            when MAX(case when visit_rank <= 2 then is_present end) = '1' then 1
+            when max(case when visit_rank <= 2 then is_present end) = '1' then 1
             else 0
-        end as country_id_422_in_2_newest
+        end as is_distributed
     from
         outlet_distribution
     group by
@@ -39,4 +39,4 @@ final as(
 
 )
 
-select * from outlet_distribution
+select * from final
