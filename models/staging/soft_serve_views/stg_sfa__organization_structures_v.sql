@@ -1,5 +1,5 @@
 with source as (
-      select * from {{ ref('sfa__organization_structures_snapshot') }}
+      select * from {{ source('sfa', 'dbo_OrganizationalStructure_v') }}
 ),
 renamed as (
     select

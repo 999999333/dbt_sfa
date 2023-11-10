@@ -25,7 +25,7 @@ final as (
         outlet.outlet_email,
         outlet.country_id,
         outlet.outlet_sap_code,
-        outlet.outlet_director, 
+        outlet.outlet_director,
         outlet.outlet_trading_name,
         outlet.outlet_delivery_adress,
         custom_field.sortiment_type,
@@ -34,15 +34,18 @@ final as (
         custom_field.visit_days,
         custom_field.pricelist_id,
         custom_field.additional_name,
-        custom_field.payer
+        custom_field.payer,
+        organizational_structure.structure_whole_node_tree,
+        organizational_structure.structure_name_detail
 
     from 
         outlet
     left join
         custom_field
         on outlet.outlet_id = custom_field.outlet_id
-
-    -- Pridat org. structure
+    left join 
+        organizational_structure
+        on outlet.organizational_structure_id = organizational_structure.organizational_structure_id
 )
 
 select * from final
