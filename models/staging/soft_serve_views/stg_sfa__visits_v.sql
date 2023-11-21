@@ -59,9 +59,9 @@ renamed as (
         {{ adapter.quote("QuickOrder") }} as is_quick_order,
 
         ----------  timestamps
-        {{ adapter.quote("OlCardDate") }} as visit_date,
-        {{ adapter.quote("BeginTime") }} as visit_start_time,
-        {{ adapter.quote("EndTime") }} as visit_end_time,
+        cast({{ adapter.quote("OlCardDate") }} as date) as visit_date,
+        cast({{ adapter.quote("BeginTime") }} as time) as visit_start_time,
+        cast({{ adapter.quote("EndTime") }} as time) as visit_end_time,
         {{ adapter.quote("EndTimeChange") }} as visit_end_time_edit,
         {{ adapter.quote("DLM") }} as dlm
         
