@@ -72,8 +72,8 @@ renamed as (
 
         ----------  timestamps
         {{ adapter.quote("DLM") }} as dlm,
-        {{ adapter.quote("dbt_valid_from") }} as valid_from,
-        {{ adapter.quote("dbt_valid_to") }} as valid_to
+        {{ adapter.quote("dbt_valid_from") }} as dbt_valid_from,
+        {{ adapter.quote("dbt_valid_to") }} as dbt_valid_to
         
         ----------  omited
         -- {{ adapter.quote("MerchMinValue") }},

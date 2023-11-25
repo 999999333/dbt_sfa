@@ -1,19 +1,89 @@
 version: 2
-
 models:
   - name: dim_images
-    description: "Consists of images from SFA application, that belongs to questionnaires. It provied names of each file and metadata. Data are stored on servers hosted by Soft Serve."
-      
-
+    description: Consists of images from SFA application, that belongs to
+      questionnaires. It provied names of each file and metadata. Data are
+      stored on servers hosted by Soft Serve.
   - name: dim_questions
-    description: "Provides all questions inluded in SFA application. They have hierarchy, but for ease of use they are in the single table. **Questionnaire->Section->Question**. "
-
-  
+    description: "Provides all questions inluded in SFA application. They have
+      hierarchy, but for ease of use they are in the single table.
+      **Questionnaire->Section->Question**. "
   - name: fact_visit
-    description: "Main fact table in the making..."
-
+    description: Main fact table in the making...
+    columns:
+      - name: visit_id
+        tests:
+          - unique
+          - not_null
   - name: fact_questionnaire_responses
-    description: "Provides all answers and references to question asked, visit and data with according `_id`."
-
+    description: Provides all answers and references to question asked, visit and
+      data with according `_id`.
   - name: inaccessibility_reasons
-    description: "Dimension of reasons, why there were planned visit not realised."
+    description: Dimension of reasons, why there were planned visit not realised.
+  - name: dim_visit_gps
+    description: ""
+    columns:
+      - name: visit_id
+        description: Primary key, refers to visit id from fact_visit. Hashed to be valid
+          connection according to standards
+        tests:
+          - unique
+          - not_null
+      - name: visit_key
+        description: ""
+      - name: country_id
+        description: ""
+      - name: country_code
+        description: ""
+      - name: visit_start_latitude
+        description: ""
+      - name: visit_start_longtitude
+        description: ""
+      - name: visit_finish_latitude
+        description: ""
+      - name: visit_finish_longtitude
+        description: ""
+      - name: is_fake_gps
+        description: ""
+  - name: dim_outlets
+    description: Outlets dimension
+    columns:
+      - name: outlet_name
+        description: ""
+      - name: outlet_id
+        description: ""
+        tests:
+          - unique
+          - not_null
+      - name: outlet_adress
+        description: ""
+      - name: outlet_email
+        description: ""
+      - name: country_id
+        description: ""
+      - name: outlet_sap_code
+        description: ""
+      - name: outlet_director
+        description: ""
+      - name: outlet_trading_name
+        description: ""
+      - name: outlet_delivery_adress
+        description: ""
+      - name: sortiment_type
+        description: ""
+      - name: visit_cycle
+        description: ""
+      - name: visit_frequency
+        description: ""
+      - name: visit_days
+        description: ""
+      - name: pricelist_id
+        description: ""
+      - name: additional_name
+        description: ""
+      - name: payer
+        description: ""
+      - name: structure_whole_node_tree
+        description: ""
+      - name: structure_name_detail
+        description: ""

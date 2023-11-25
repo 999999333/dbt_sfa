@@ -6,7 +6,7 @@ final as (
 
     select
         ----------  ids
-        dbt_scd_id as customer_id,
+        customer_id,
         outlet_external_code,
         country_id,
         country_code,
@@ -30,8 +30,8 @@ final as (
         ----------  booleans
 
         ----------  timestamps
-        valid_from,
-        valid_to    
+        dbt_valid_from,
+        dbt_valid_to    
 
         ----------  omited
 

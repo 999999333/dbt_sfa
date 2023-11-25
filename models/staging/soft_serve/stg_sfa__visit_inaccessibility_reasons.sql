@@ -11,7 +11,7 @@ renamed as (
         {{ adapter.quote("Reason_id") }} as inaccessibility_reason_key,
 
         {{ adapter.quote("ExternalCode") }} as inaccessibility_reason_external_code,
-        
+            
         {{ convert_country_to_code("Country_Code") }} as country_id,
 
         ----------  strings
@@ -27,7 +27,7 @@ renamed as (
         ----------  timestamps
         {{ adapter.quote("DLM") }} as dlm,
         {{ adapter.quote("dbt_valid_from") }} as dbt_valid_from,
-        coalesce("dbt_valid_to", cast('{{ var("future_proof_date") }}' as datetime)) as dbt_valid_to
+        coalesce("dbt_valid_to", cast('{{ var("future_proof_date") }}' as datetime2)) as dbt_valid_to
 
         ----------  omited
         --{{ adapter.quote("IsLegal") }},

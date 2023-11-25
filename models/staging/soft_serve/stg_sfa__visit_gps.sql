@@ -8,8 +8,9 @@ renamed as (
         ----------  ids
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "OLCard_id"]) }} as visit_id,
         {{ adapter.quote("OLCard_id") }} as visit_key,
-        {{ convert_country_to_code("Country_Code") }} as country_id,
 
+        {{ convert_country_to_code("Country_Code") }} as country_id,
+        {{ adapter.quote("Country_Code") }} as country_code,
         ----------  strings
 
         ----------  numerics

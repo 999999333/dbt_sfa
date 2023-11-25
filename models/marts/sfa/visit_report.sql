@@ -11,7 +11,7 @@ with visit as (
 ),
 
 visit_with_db_ids as (
-    select * from {{ ref('int_visit_with_db_ids') }}
+    select * from {{ ref('fact_visit') }}
 
 ),
 

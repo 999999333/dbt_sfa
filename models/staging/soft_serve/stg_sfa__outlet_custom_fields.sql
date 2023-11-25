@@ -4,7 +4,7 @@ with source as (
 renamed as (
     select
         {{ adapter.quote("Country_Code") }},
-        {{ adapter.quote("CustomKey") }},
+        {{ adapter.quote("CustomKey") }} as outlet_key,
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "CustomKey"]) }} as outlet_id,
         {{ adapter.quote("FI1") }},
         {{ adapter.quote("FI2") }},

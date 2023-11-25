@@ -1,12 +1,13 @@
 {{
     config(
-        materialized = 'table'
+        materialized='incremental',
+        unique_key='outlet_id'
     )
 }}
 
 
 with outlet as (
-    select * from {{ ref('stg_sfa__outlets_v') }}
+    select * from {{ ref('stg_sfa__outlets') }}
 ),
 
 custom_field as (
@@ -19,7 +20,7 @@ organizational_structure as (
 
 final as (
     select
-        outlet.outlet_name,
+        1 as outlet_name,
         outlet.outlet_id,
         outlet.outlet_adress,
         outlet.outlet_email,
@@ -28,6 +29,7 @@ final as (
         outlet.outlet_director,
         outlet.outlet_trading_name,
         outlet.outlet_delivery_adress,
+        outlet.dlm,
         custom_field.sortiment_type,
         custom_field.visit_cycle,
         custom_field.visit_frequency,
@@ -46,6 +48,16 @@ final as (
     left join 
         organizational_structure
         on outlet.organizational_structure_id = organizational_structure.organizational_structure_id
+    
+    where
+
+    {% if is_incremental() %}
+        outlet.dlm >= (select max(this.dlm)from {{ this }} as this) 
+        and
+
+    {% endif %}
+
+    outlet.dbt_valid_to >= cast('{{ var("future_proof_date") }}' as datetime2)
 )
 
 select * from final

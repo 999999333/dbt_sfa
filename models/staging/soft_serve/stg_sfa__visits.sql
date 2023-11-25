@@ -16,6 +16,7 @@ renamed as (
         {{ adapter.quote("Merch_id") }} as merchant_key,
 
         {{ convert_country_to_code("Country_Code") }} as country_id,
+         {{ adapter.quote("Country_Code") }} as country_code,
 
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "Reason_ID"]) }} as inaccessibility_reason_id,
         {{ adapter.quote("Reason_ID") }} as inaccessibility_reason_key,
@@ -40,7 +41,6 @@ renamed as (
         {{ adapter.quote("OlCardWeek") }} as visit_week,
         {{ adapter.quote("DistributionCaptureMode") }},
         {{ adapter.quote("CommentsDestination") }},
-        {{ adapter.quote("VisitTimeSec") }},
         {{ adapter.quote("DistanceToOutlet") }} as visit_start_distance,
         {{ adapter.quote("DistanceToOutlet_End") }} as visit_end_distance,
         {{ adapter.quote("FacingCaptureMode") }},
@@ -59,13 +59,14 @@ renamed as (
         {{ adapter.quote("QuickOrder") }} as is_quick_order,
 
         ----------  timestamps
-        {{ adapter.quote("OlCardDate") }} as visit_date,
-        {{ adapter.quote("BeginTime") }} as visit_start_time,
-        {{ adapter.quote("EndTime") }} as visit_end_time,
+        cast({{ adapter.quote("OlCardDate") }} as date) as visit_date,
+        cast({{ adapter.quote("BeginTime") }} as time(2)) as visit_start_time,
+        cast({{ adapter.quote("EndTime") }} as time(2)) as visit_end_time,
+        {{ adapter.quote("VisitTimeSec") }} as visit_duration_sec,
         {{ adapter.quote("EndTimeChange") }} as visit_end_time_edit,
         {{ adapter.quote("DLM") }} as dlm,
-        dbt_valid_from as valid_from,
-        coalesce("dbt_valid_to", cast('{{ var("future_proof_date") }}' as datetime)) as valid_to
+        dbt_valid_from as dbt_valid_from,
+        coalesce("dbt_valid_to", cast('{{ var("future_proof_date") }}' as datetime)) as dbt_valid_to
 
         
         ----------  omited
