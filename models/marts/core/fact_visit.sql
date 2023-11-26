@@ -1,6 +1,7 @@
 {{
     config(
-        materialized = 'table'
+        materialized='incremental',
+        unique_key='visit_id'
     )
 }}
 
@@ -37,15 +38,16 @@ final as (
         visit_end_time
     
 
-
-
-
-
-
-
     from visit
 
     where
+
+    {% if is_incremental() %}
+        visit_date >= (select max(this.visit_date)from {{ this }} as this) 
+        and
+
+    {% endif %}
+
     dbt_valid_to >= cast('{{ var("future_proof_date") }}' as datetime2)
 
 )

@@ -5,9 +5,9 @@ renamed as (
     select
         ----------  ids
         {{ adapter.quote("dbt_scd_id") }},
-        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Staff_id"]) }} as _id,
-        {{ adapter.quote("Staff_id") }} as staff_id,
-        {{ adapter.quote("Staff_Code") }} as staff_code,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Staff_id"]) }} as staff_id,
+        {{ adapter.quote("Staff_id") }} as staff_key,
+        {{ adapter.quote("Staff_Code") }} as staff_sap_code,
         {{ convert_country_to_code("Country_Code") }} as country_id,
 
         ----------  strings

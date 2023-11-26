@@ -1,5 +1,5 @@
 with source as (
-    select * from {{ source('sfa', 'dbo_OutletDistribution') }}
+    select * from {{ source('sfa', 'dbo_OutletDistribution_v') }}
 ),
 
 renamed as (
@@ -28,8 +28,6 @@ renamed as (
         {{ adapter.quote("IsSetup") }} as is_setup
 
         ----------  timestamps
-        -- {{ adapter.quote("Valid_From") }},
-        -- {{ adapter.quote("Valid_To") }}
 
         ----------  omited
         -- {{ adapter.quote("OutOfStockReason") }},        

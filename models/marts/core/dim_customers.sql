@@ -36,6 +36,9 @@ final as (
         ----------  omited
 
     from customer
+    
+    where
+        dbt_valid_to >= cast('{{ var("future_proof_date") }}' as datetime2)
 )
 
 select * from final

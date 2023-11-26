@@ -13,12 +13,12 @@ with outlet_distribution as (
         country_id,
         product_name,
         is_pos_material,
-        product_code,
+        product_sap_code,
         is_present,
         price,
         rank() over (partition by (outlet_id + product_id) order by visit_date desc) as visit_rank
     from
-        {{ ref('fact_outlet_distribution')}}
+        {{ ref('fact_outlet_distributions')}}
     where
         visit_date >= dateadd(month, -2, getdate())
 ),

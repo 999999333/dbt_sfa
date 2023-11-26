@@ -20,8 +20,9 @@ organizational_structure as (
 
 final as (
     select
-        1 as outlet_name,
+        outlet.outlet_name,
         outlet.outlet_id,
+        outlet.organizational_structure_id,
         outlet.outlet_adress,
         outlet.outlet_email,
         outlet.country_id,

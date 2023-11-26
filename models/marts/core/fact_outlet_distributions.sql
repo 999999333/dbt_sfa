@@ -1,12 +1,14 @@
 {{
     config(
-        materialized = 'table'
+        materialized='incremental',
+        unique_key='distribution_id'
     )
 }}
 
 
+
 with outlet_distribution as (
-    select * from {{ ref('stg_sfa__outlet_distributions')}}
+    select * from {{ ref('stg_sfa__outlet_distributions_v')}}
 ),
 
 product as (
@@ -14,19 +16,20 @@ product as (
 ),
 
 visit as (
-    select * from {{ ref('stg_sfa__visits_v')}}
+    select * from {{ ref('stg_sfa__visits')}}
 ),
 
 final as (
     select 
-        visit.visit_date,
-        visit.outlet_id,
+        outlet_distribution.distribution_id,
         outlet_distribution.visit_id,
         outlet_distribution.product_id,
+        visit.visit_date,
+        visit.outlet_id,
         outlet_distribution.country_id,
         product.product_name,
         product.is_pos_material,
-        product.product_code,
+        product.product_sap_code,
         outlet_distribution.is_present,
         outlet_distribution.price
 
@@ -38,6 +41,16 @@ final as (
     left outer join
         visit
         on outlet_distribution.visit_id = visit.visit_id
+
+    where
+
+    {% if is_incremental() %}
+        visit.visit_date >= (select max(this.visit_date)from {{ this }} as this) 
+        and
+
+    {% endif %}
+
+    visit.dbt_valid_to >= cast('{{ var("future_proof_date") }}' as datetime2)
    
 )
 

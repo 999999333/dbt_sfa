@@ -4,8 +4,8 @@ with source as (
 renamed as (
     select
         {{ adapter.quote("Country_Code") }},
-        {{ adapter.quote("Staff_id") }},
-        {{ adapter.quote("OrgStructureID") }},
+        {{ adapter.quote("Staff_id") }} as staff_key,
+        {{ adapter.quote("OrgStructureID") }} as organizational_structure_key,
         {{ adapter.quote("StartDate") }},
         {{ adapter.quote("EndDate") }},
         {{ adapter.quote("IsMain") }},
