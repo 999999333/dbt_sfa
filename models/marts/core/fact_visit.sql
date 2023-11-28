@@ -28,6 +28,7 @@ final as (
         ----------  numerics
         visit_start_distance,
         visit_end_distance,
+        visit_duration_sec,
 
         ----------  booleans
         is_quick_order,
