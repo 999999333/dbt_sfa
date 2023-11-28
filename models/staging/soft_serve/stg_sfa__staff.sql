@@ -9,6 +9,7 @@ renamed as (
         {{ adapter.quote("Staff_id") }} as staff_key,
         {{ adapter.quote("Staff_Code") }} as staff_sap_code,
         {{ convert_country_to_code("Country_Code") }} as country_id,
+         {{ adapter.quote("Country_Code") }} as country_code,
 
         ----------  strings
         {{ adapter.quote("Name") }} as staff_name_whole,

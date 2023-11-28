@@ -1,14 +1,37 @@
+{{
+    config(
+        materialized = 'table'
+    )
+}}
+
 with sfa_file as (
-    select * from {{ ref('stg_sfa__files') }}
+    select * from {{ ref('stg_sfa__files_v') }}
 ),
 
 response_image as (
-    select * from {{ ref('stg_sfa__questionnaire_response_images') }}
+    select * from {{ ref('stg_sfa__questionnaire_response_images_v') }}
+),
+
+first_image as (
+    select
+    questionnaire_response_id,
+    sfa_file_id,
+    image_id
+    from (
+        select
+            questionnaire_response_id,
+            sfa_file_id,
+            step,
+            image_id,
+            row_number() over (partition by sfa_file_id order by step) as rown 
+        from response_image
+    ) as subquery
+    where rown = 1
 ),
 
 final as (
     select 
-        response_image.questionnaire_response_id,
+        first_image.questionnaire_response_id,
         sfa_file.country_code,
         sfa_file.sfa_file_key,
         sfa_file.sfa_file_name,
@@ -20,9 +43,9 @@ final as (
         
 
     from 
-    sfa_file
-    left join response_image
-    on sfa_file.sfa_file_id = response_image.sfa_file_id
+    first_image
+    left join sfa_file
+    on first_image.sfa_file_id = sfa_file.sfa_file_id
 )
 
 select * from final

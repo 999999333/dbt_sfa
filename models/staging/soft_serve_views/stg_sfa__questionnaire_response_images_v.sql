@@ -1,5 +1,5 @@
 with source as (
-      select * from {{ source('sfa', 'dbo_ResponsesSingleContentD') }}
+      select * from {{ source('sfa', 'dbo_ResponsesSingleContentD_v') }}
 ),
 renamed as (
     select
@@ -7,6 +7,9 @@ renamed as (
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "ContentID"]) }} as sfa_file_id,
         {{ adapter.quote("ContentID") }} as sfa_file_key,
     
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Response_ID", "Object_ID"]) }} as image_id,
+
+
         {{ dbt_utils.generate_surrogate_key(["Country_Code", "Response_ID"]) }} as questionnaire_response_id,
         {{ adapter.quote("Response_ID") }} as questionnaire_response_key,
     
@@ -18,7 +21,7 @@ renamed as (
         ----------  strings
 
         ----------  numerics
-        {{ adapter.quote("StepNumber") }}
+        {{ adapter.quote("StepNumber") }} as step
         
         ----------  booleans
 

@@ -23,11 +23,11 @@ renamed as (
 
         ----------  ids
         {{ adapter.quote("dbt_scd_id") }} as dbt_scd_id,
-        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Cust_Id", "dbt_valid_from"]) }} as _id,
-        {{ adapter.quote("Cust_Id") }} as customer_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Cust_Id", "dbt_valid_from"]) }} as customer_id,
+        {{ adapter.quote("Cust_Id") }} as customer_key,
 
         {{ adapter.quote("OL_id") }} as outlet_id,
-        {{ adapter.quote("ExternalCode") }} outlet_external_code,
+        {{ adapter.quote("ExternalCode") }} as outlet_external_code,
         {{ adapter.quote("DB_ID") }} as database_id,
         {{ adapter.quote("GeographyID") }} as geography_id,
         {{ convert_country_to_code("Country_Code") }} as country_id,
@@ -73,7 +73,7 @@ renamed as (
         ----------  timestamps
         {{ adapter.quote("DLM") }} as dlm,
         {{ adapter.quote("dbt_valid_from") }} as dbt_valid_from,
-        {{ adapter.quote("dbt_valid_to") }} as dbt_valid_to
+        coalesce("dbt_valid_to", cast('{{ var("future_proof_date") }}' as datetime)) as dbt_valid_to
         
         ----------  omited
         -- {{ adapter.quote("MerchMinValue") }},

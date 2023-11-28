@@ -104,24 +104,24 @@ final as (
             kpi.country_code
         )
     FROM
-        kpi AS kpi
-        LEFT JOIN kpi AS level1
-        ON kpi.parentid = level1.kpiid
+        kpi as kpi
+        left join kpi as level1
+        on kpi.parentid = level1.kpiid
         AND kpi.country_code = level1.country_code
-        LEFT JOIN kpi AS level2
-        ON level1.parentid = level2.kpiid
+        left join kpi as level2
+        on level1.parentid = level2.kpiid
         AND kpi.country_code = level2.country_code
-        LEFT JOIN kpi AS level3
-        ON level2.parentid = level3.kpiid
+        left join kpi as level3
+        on level2.parentid = level3.kpiid
         AND kpi.country_code = level3.country_code
-        LEFT JOIN kpi AS level4
-        ON level3.parentid = level4.kpiid
+        left join kpi as level4
+        on level3.parentid = level4.kpiid
         AND kpi.country_code = level4.country_code
-        LEFT JOIN kpi AS level5
-        ON level4.parentid = level5.kpiid
+        left join kpi as level5
+        on level4.parentid = level5.kpiid
         AND kpi.country_code = level5.country_code
-        LEFT JOIN kpi AS level6
-        ON level5.parentid = level6.kpiid
+        left join kpi as level6
+        on level5.parentid = level6.kpiid
         AND kpi.country_code = level6.country_code
 )
 

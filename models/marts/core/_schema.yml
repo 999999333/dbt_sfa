@@ -87,3 +87,80 @@ models:
         description: ""
       - name: structure_name_detail
         description: ""
+  - name: dim_organization_structures
+    description: Organizational structure contains info about each route and
+      corresponding sales representative on that route
+    columns:
+      - name: organizational_structure_id
+        description: ""
+        tests:
+          - unique
+          - not_null
+      - name: staff_id
+        description: ""
+      - name: structure_node_key
+        description: ""
+      - name: structure_node_level
+        description: ""
+      - name: structure_node_tree_hierarchy
+        description: ""
+      - name: country_id
+        description: ""
+      - name: country_code
+        description: ""
+      - name: structure_whole_node_tree
+        description: ""
+      - name: staff_name_whole
+        description: ""
+      - name: staff_name_first
+        description: ""
+      - name: staff_name_last
+        description: ""
+      - name: staff_position
+        description: ""
+      - name: staff_comment
+        description: ""
+      - name: staff_sap_code
+        description: ""
+      - name: staff_email
+        description: ""
+      - name: staff_telephone
+        description: ""
+  - name: dim_customers
+    description: "Relevant information regarding customers, which are visited by
+      sales representatives during field visits. "
+    columns:
+      - name: customer_id
+        description: ""
+      - name: outlet_external_code
+        description: ""
+      - name: country_id
+        description: ""
+      - name: country_code
+        description: ""
+      - name: customer_name
+        description: ""
+      - name: customer_trading_name
+        description: ""
+      - name: customer_adress
+        description: ""
+      - name: comments
+        description: Manually created comment in SFA application. Mainly used for quick
+          notes by sales representatives
+      - name: password
+        description: ""
+  - name: dim_inaccessibility_reasons
+    description: Table with reasons, why sales representative wasn't able to do
+      her/his planned visit regarding to plan. In case, there was some comment
+      written by sales rep, it will be in visit table itself (fact_visit).
+    columns:
+      - name: inaccessibility_reason_id
+        description: ""
+      - name: inaccessibility_reason
+        description: Reason itself, text description.
+      - name: country_id
+        description: ""
+      - name: country_code
+        description: ""
+      - name: inaccessibility_reason_external_code
+        description: ""

@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized = 'table'
+    )
+}}
+
 with visit_gps as (
     select * from {{ ref('stg_sfa__visit_gps') }}
 ),
@@ -12,7 +18,8 @@ final as (
         visit_start_longtitude,
         visit_finish_latitude,
         visit_finish_longtitude,
-        is_fake_gps
+        is_fake_gps,
+        dlm
 
     from
         visit_gps

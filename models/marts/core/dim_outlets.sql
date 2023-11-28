@@ -53,7 +53,7 @@ final as (
     where
 
     {% if is_incremental() %}
-        outlet.dlm >= (select max(this.dlm)from {{ this }} as this) 
+        outlet.dlm >= (select max(this.dlm) from {{ this }} as this) 
         and
 
     {% endif %}

@@ -1,257 +1,200 @@
 models:
   - name: stg_sfa__customers
-    description: "Base model for customers"
+    description: Base model for customers. Data are imported from SAP, OPEX team is
+      responsible to provide SoftServe with correct data.
     columns:
       - name: converted
         data_type: bigint
-        description: "ahoj jak se mas"
-
+        description: ahoj jak se mas
       - name: country_code
         data_type: varchar
-        description: "popisek"
-
+        description: The numerical ID associated with the country code, generated using
+          the macro.dddd
       - name: customer_id
         data_type: bigint
-        description: ""
-
+        description: The numerical ID associated with the country code, generated using
+          the macro.
       - name: customer_name
         data_type: varchar
         description: ""
-
       - name: customer_trading_name
         data_type: varchar
         description: ""
-
       - name: zkpo
         data_type: varchar
         description: ""
-
       - name: mfo
         data_type: varchar
         description: ""
-
       - name: bank_account
         data_type: varchar
         description: ""
-
       - name: tax_number
         data_type: varchar
         description: ""
-
       - name: vat_number
         data_type: varchar
         description: ""
-
       - name: customer_adress
         data_type: varchar
         description: ""
-
       - name: customer_trading_address
         data_type: varchar
         description: ""
-
       - name: bank_name
         data_type: varchar
         description: ""
-
       - name: director
         data_type: varchar
         description: ""
-
       - name: city_id
         data_type: bigint
         description: ""
-
       - name: email
         data_type: varchar
         description: ""
-
       - name: phone
         data_type: varchar
         description: ""
-
       - name: trading_phone
         data_type: varchar
         description: ""
-
       - name: comments
         data_type: varchar
         description: ""
-
       - name: distributor_id
         data_type: bigint
         description: ""
-
       - name: passwd
         data_type: varchar
         description: ""
-
       - name: dlm
         data_type: datetime2
         description: ""
-
       - name: status
         data_type: bigint
         description: ""
-
       - name: payformminvalue
         data_type: bigint
         description: ""
-
       - name: payformcurrentvalue
         data_type: bigint
         description: ""
-
       - name: payformmaxvalue
         data_type: bigint
         description: ""
-
       - name: discountminvalue
         data_type: bigint
         description: ""
-
       - name: discountcurrentvalue
         data_type: bigint
         description: ""
-
       - name: discountmaxvalue
         data_type: bigint
         description: ""
-
       - name: lastsyncdatetime
         data_type: datetime2
         description: ""
-
       - name: renewsupervisorpasswd
         data_type: bit
         description: ""
-
       - name: renewadminpasswd
         data_type: bit
         description: ""
-
       - name: ulm
         data_type: bigint
         description: ""
-
       - name: desktopoutletminvalue
         data_type: bigint
         description: ""
-
       - name: desktopoutletcurrentvalue
         data_type: bigint
         description: ""
-
       - name: desktopoutletmaxvalue
         data_type: bigint
         description: ""
-
       - name: desktoporderminvalue
         data_type: bigint
         description: ""
-
       - name: desktopordercurrentvalue
         data_type: bigint
         description: ""
-
       - name: desktopordermaxvalue
         data_type: bigint
         description: ""
-
       - name: merchminvalue
         data_type: bigint
         description: ""
-
       - name: merchmaxvalue
         data_type: bigint
         description: ""
-
       - name: desktoprouteminvalue
         data_type: bigint
         description: ""
-
       - name: desktoproutecurrentvalue
         data_type: bigint
         description: ""
-
       - name: desktoproutemaxvalue
         data_type: bigint
         description: ""
-
       - name: desktopvisitminvalue
         data_type: bigint
         description: ""
-
       - name: desktopvisitcurrentvalue
         data_type: bigint
         description: ""
-
       - name: desktopvisitmaxvalue
         data_type: bigint
         description: ""
-
       - name: checkschedule
         data_type: varchar
         description: ""
-
       - name: area_id
         data_type: bigint
         description: ""
-
       - name: ieconfiguration
         data_type: varchar
         description: ""
-
       - name: salesorgcode
         data_type: varchar
         description: ""
-
       - name: isblocked
         data_type: bit
         description: ""
-
       - name: syncinprogress
         data_type: bit
         description: ""
-
       - name: outlet_id
         data_type: bigint
         description: ""
-
       - name: geography_id
         data_type: varchar
         description: ""
-
       - name: is2levelmode
         data_type: bit
         description: ""
-
       - name: warehousebaseid
         data_type: varchar
         description: ""
-
       - name: externalcode
         data_type: varchar
         description: ""
-
       - name: database_id
         data_type: bigint
         description: ""
-
       - name: isinexchangeequipment
         data_type: bit
         description: ""
-
       - name: valid_from
         data_type: date
         description: ""
-
       - name: valid_to
         data_type: date
         description: ""
-
   - name: stg_sfa__visit_inaccessibility_reasons
-    description: "This model transforms the source table `sfa__visit_inaccessibility_reasons_snapshot` with various transformations."
+    description: This model transforms the source table
+      `sfa__visit_inaccessibility_reasons_snapshot` with various
+      transformations.
     columns:
       - name: dbt_scd_id
         description: "{{ doc('dbt_scd_id') }}"
@@ -275,9 +218,9 @@ models:
         description: "{{ doc('dbt_valid_from') }}"
       - name: dbt_valid_to
         description: "{{ doc('dbt_valid_to') }}"
-
   - name: stg_sfa__questionnaires
-    description: "This model transforms the source table `sfa__documents_snapshot` with various transformations."
+    description: This model transforms the source table `sfa__documents_snapshot`
+      with various transformations.
     columns:
       - name: dbt_scd_id
         description: "{{ doc('dbt_scd_id') }}"
@@ -305,9 +248,9 @@ models:
         description: "{{ doc('dbt_valid_from') }}"
       - name: dbt_valid_to
         description: "{{ doc('dbt_valid_to') }}"
-
   - name: stg_sfa__questionnaire_items
-    description: "This model transforms the source table `sfa__questionnaire_items_snapshot` with various transformations."
+    description: This model transforms the source table
+      `sfa__questionnaire_items_snapshot` with various transformations.
     columns:
       - name: dbt_scd_id
         description: "{{ doc('dbt_scd_id') }}"
@@ -357,9 +300,8 @@ models:
         description: "{{ doc('dbt_valid_from') }}"
       - name: dbt_valid_to
         description: "{{ doc('dbt_valid_to') }}"
-
   - name: stg_sfa__questionnaire_sections
-    description: "This model transforms the source table with various transformations."
+    description: This model transforms the source table with various transformations.
     columns:
       - name: dbt_scd_id
         description: "{{ doc('dbt_scd_id') }}"
@@ -403,4 +345,3 @@ models:
         description: "{{ doc('dbt_valid_from') }}"
       - name: dbt_valid_to
         description: "{{ doc('dbt_valid_to') }}"
-

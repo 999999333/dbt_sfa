@@ -15,7 +15,7 @@ renamed as (
         {{ adapter.quote("Product_id") }} as product_key,
 
         {{ convert_country_to_code("Country_Code") }} as country_id,
-
+        {{ adapter.quote("Country_Code") }} as country_code,
         ----------  strings
 
         ----------  numerics

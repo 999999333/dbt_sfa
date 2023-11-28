@@ -20,14 +20,15 @@ renamed as (
         {{ adapter.quote("FinishLongitude") }} as visit_finish_longtitude,
 
         ----------  booleans
-        {{ adapter.quote("isFake") }} as is_fake_gps
+        {{ adapter.quote("isFake") }} as is_fake_gps,
 
         ----------  timestamps
+        {{ adapter.quote("DLM") }} as dlm
         -- {{ adapter.quote("Valid_From") }} as valid_from,
         -- {{ adapter.quote("Valid_To") }} as valid_to
 
         ----------  omited
-        -- {{ adapter.quote("DLM") }},
+        
 
     from source
 )

@@ -1,5 +1,5 @@
 with source as (
-      select * from {{ source('sfa', 'dbo_StaffOrganizationalStructureLinksActive') }}
+      select * from {{ source('sfa', 'dbo_StaffOrganizationalStructureLinksActive_v') }}
 ),
 
 renamed as (
@@ -17,10 +17,7 @@ renamed as (
         {{ adapter.quote("EndDate") }} as link_end_date,
         {{ adapter.quote("IsMain") }} as is_main,
         {{ adapter.quote("DLM") }} as dlm,
-        {{ adapter.quote("RecordNumber") }} as record_number,
-        {{ adapter.quote("Valid_From") }},
-        {{ adapter.quote("Valid_To") }}
-
+        {{ adapter.quote("RecordNumber") }} as record_number
 
     from source
 )

@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized = 'table'
+    )
+}}
+
 with customer as (
     select * from {{ ref('stg_sfa__customers') }}
 ),
@@ -14,24 +20,15 @@ final as (
         ----------  strings
         customer_name,
         customer_trading_name,
-        zkpo,
-        mfo,
-        tax_number,
-        vat_number,
         customer_adress,
-        email,
-        phone,
-        trading_phone,
         comments,
-        password,
+        password
 
         ----------  numerics
 
         ----------  booleans
 
-        ----------  timestamps
-        dbt_valid_from,
-        dbt_valid_to    
+        ----------  timestamps   
 
         ----------  omited
 
