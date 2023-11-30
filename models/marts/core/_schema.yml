@@ -128,16 +128,19 @@ models:
         description: ""
   - name: dim_customers
     description: "Relevant information regarding customers, which are visited by
-      sales representatives during field visits. "
+      sales representatives during field visits. Customer is somebody "
     columns:
       - name: customer_id
         description: ""
-      - name: outlet_external_code
-        description: ""
+        tests:
+          - unique
+          - not_null
+      - name: customer_external_code
+        description: "SAP code that belongs to this customer"
       - name: country_id
-        description: ""
+        description: "{% docs country_id %}"
       - name: country_code
-        description: ""
+        description: "{% docs country_code %}"
       - name: customer_name
         description: ""
       - name: customer_trading_name
@@ -156,11 +159,14 @@ models:
     columns:
       - name: inaccessibility_reason_id
         description: ""
+        tests:
+          - unique
+          - not_null
       - name: inaccessibility_reason
         description: Reason itself, text description.
       - name: country_id
-        description: ""
+        description: "{% docs country_id %}"
       - name: country_code
-        description: ""
+        description: "{% docs country_code %}"
       - name: inaccessibility_reason_external_code
         description: ""

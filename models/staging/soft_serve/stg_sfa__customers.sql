@@ -23,15 +23,19 @@ renamed as (
 
         ----------  ids
         {{ adapter.quote("dbt_scd_id") }} as dbt_scd_id,
-        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Cust_Id", "dbt_valid_from"]) }} as customer_id,
+
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "Cust_Id"]) }} as customer_id,
         {{ adapter.quote("Cust_Id") }} as customer_key,
 
-        {{ adapter.quote("OL_id") }} as outlet_id,
-        {{ adapter.quote("ExternalCode") }} as outlet_external_code,
-        {{ adapter.quote("DB_ID") }} as database_id,
-        {{ adapter.quote("GeographyID") }} as geography_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "OL_id"]) }} as outlet_id,
+        {{ adapter.quote("OL_id") }} as outlet_key,
+
+        {{ adapter.quote("DB_ID") }} as database_key,
+        {{ adapter.quote("GeographyID") }} as geography_key,
+
         {{ convert_country_to_code("Country_Code") }} as country_id,
         {{ adapter.quote("Country_Code") }} as country_code,
+        
         {{ adapter.quote("City_Id") }} as city_id,
         {{ adapter.quote("Distr_id") }} as distributor_id,
         {{ adapter.quote("Area_ID") }} as area_id,
@@ -55,6 +59,7 @@ renamed as (
         {{ adapter.quote("TradingPhone") }} as trading_phone,
         {{ adapter.quote("Comments") }} as comments,
         {{ adapter.quote("Passwd") }} as password,
+        {{ adapter.quote("ExternalCode") }} as customer_external_code,
 
         ----------  numerics
         {{ adapter.quote("Status") }} as status,

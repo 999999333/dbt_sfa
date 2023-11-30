@@ -13,7 +13,7 @@ final as (
     select
         ----------  ids
         customer_id,
-        outlet_external_code,
+        customer_external_code,
         country_id,
         country_code,
 
