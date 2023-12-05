@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: sfa
-    database: DWH_Fabric
-    schema: dbt
+    database: L01_Stage
+    schema: sfa
     tables:
       - name: dbo_Warehouses_v
       - name: dbo_ContentFiles_v

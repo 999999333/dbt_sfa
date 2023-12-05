@@ -1,3 +1,4 @@
+version: 2
 models:
   - name: stg_sfa__customers
     description: Base model for customers. Data are imported from SAP, OPEX team is

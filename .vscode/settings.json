@@ -1,11 +1,11 @@
 {
-    "turntable.profilesDirectory": "E:\\Documents\\dbt_Fabric\\SFA",
+    "turntable.profilesDirectory": "D:\\DBT\\dbt_sfa_poc\\dbt_sfa",
     "sqlfluff.config": "${workspaceFolder}/.sqlfluff",
     "sqlfluff.linter.run": "onSave",
     "sqlfluff.experimental.format.executeInTerminal": true,
     "editor.formatOnSave": false,
     "dbt.queryLimit": 500,
     "dbt.enableNewLineagePanel": true,
-    "turntable.dbtVersion": "1.6",
-    "turntable.warehouse": "databricks"
+    "turntable.dbtVersion": "1.4",
+    "turntable.warehouse": "postgres"
 }

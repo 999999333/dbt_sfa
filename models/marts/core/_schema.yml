@@ -138,9 +138,9 @@ models:
       - name: customer_external_code
         description: "SAP code that belongs to this customer"
       - name: country_id
-        description: "{% docs country_id %}"
+        description: " "
       - name: country_code
-        description: "{% docs country_code %}"
+        description: " "
       - name: customer_name
         description: ""
       - name: customer_trading_name
@@ -165,8 +165,8 @@ models:
       - name: inaccessibility_reason
         description: Reason itself, text description.
       - name: country_id
-        description: "{% docs country_id %}"
+        description: " "
       - name: country_code
-        description: "{% docs country_code %}"
+        description: " "
       - name: inaccessibility_reason_external_code
         description: ""
