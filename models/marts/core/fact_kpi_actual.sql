@@ -17,14 +17,14 @@ with rankedkpi as (
         fact,
         dlm,
         status,
-        concat(kpiid, ':', ol_id, ':', country_code) as kpi_outlet_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "KpiId", "OL_ID"]) }} as kpi_outlet_id,
         concat(kpiid, ':', country_code) as kpi_country_id,
         rank() over (
             partition by country_code, kpiid, ol_id, format(date, 'yyyyMM')
             order by fact desc
         ) as rankinmonth
     from l01_stage.sfa.ps_kpiexecutionfact_v
-)
+),
 
 final as (
     select
@@ -37,7 +37,7 @@ final as (
         status,
         kpiid as kpi_id,
         orgstructureid as org_id,
-        concat(kpiid, ':', ol_id, ':', country_code) as kpi_outlet_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "KpiId", "OL_ID"]) }} as kpi_outlet_id,
         concat(kpiid, ':', country_code) as kpi_country_id
     from rankedkpi
     where rankinmonth = 1

@@ -11,7 +11,7 @@ with kpi_plan as (
 final as (
     select
         country_code,
-        -- period = format(date_to, 'yyyyMMdd'), 
+        period = format(date_to, 'yyyyMMdd'), 
         date_to,
         plan_value,
         outlet_id,

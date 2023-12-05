@@ -13,68 +13,75 @@ sfa_file as (
 response_image as (
     select * from {{ ref('stg_sfa__questionnaire_response_images_v') }}
 ),
-
-first_image as (
-    select
-    questionnaire_response_id,
-    sfa_file_id,
-    image_id
-    from (
-        select
-            questionnaire_response_id,
-            sfa_file_id,
-            image_id,
-            step,
-            image_id,
-            row_number() over (partition by sfa_file_id order by step) as rown 
-        from response_image
-    ) as subquery
-    where rown = 1
-),
-
-final as (
-    select 
-        first_image.questionnaire_response_id,
-        sfa_file.country_code,
-        sfa_file.sfa_file_key,
-        sfa_file.sfa_file_name,
-        sfa_file.sfa_file_id,
-        sfa_file.sfa_file_name_unique,
-        sfa_file.comment,
-        sfa_file.is_edited,
-        sfa_file.content_file_key
-        
-
-    from 
-    first_image
-    left join sfa_file
-    on first_image.sfa_file_id = sfa_file.sfa_file_id
-)
-
-final as (
-    select
-        responded_on_visit.visit_id,
-        responded_on_visit.visit_key,
-        responded_on_visit.questionnaire_response_id,
-        responded_on_visit.questionnaire_response_key,
-        responded_on_visit.country_id,
-
-        coalesce(response_text.question_id, response_image.question_id) as question_id,
-        response_text.questionnaire_answer,
-        response_text.questionnaire_answer_external_code,
-
-        response_image.sfa_file_id as image_id,
-        coalesce(
-            response_image.sfa_file_id,
-            {{ dbt_utils.generate_surrogate_key(["questionnaire_answer_step", "response_text.question_id", "responded_on_visit.questionnaire_response_id"]) }}
-            )  as sfa_file_id,
-        response_image.question_id as image_question_id
-    from
-    responded_on_visit
-
-    left join response_image
-    on responded_on_visit.questionnaire_response_id = response_image.questionnaire_response_id
-)
-
-
-select * from final
+ 
+--Table without photo responses--
+(
+SELECT
+    v.Visit_ID,
+	r.Response_ID,
+	v.Country_Code,
+	s.Name AS Section,
+	--q.item_id,
+	--r.Item_ID,
+    q.displayvalue AS Question,
+	r.ResponseValue AS Response,
+	Photo_Link = 'n/a'
+    --q.section_id
+ 
+FROM
+L01_stage.sfa.dbo_DocumentItems_v q
+ 
+LEFT JOIN L01_Stage.sfa.dbo_ResponsesSingleD_v r
+ON q.item_id = r.Item_ID
+ 
+LEFT JOIN L01_Stage.sfa.dbo_DocumentSections_v s
+ON q.Section_ID = s.Section_ID
+ 
+LEFT JOIN L01_Stage.sfa.dbo_QuestionnaireResponseOnVisit_v v
+ON r.Response_ID = v.Response_ID
+AND r.Country_Code = v.Country_Code
+ 
+WHERE r.ResponseValue IS NOT NULL
+ 
+ 
+UNION ALL
+ 
+--Add Table with photo responses--
+ 
+SELECT
+	v.Visit_ID,
+	r.Response_ID,
+	v.Country_Code,
+    --q.item_id,
+	--r.object_id,
+	s.Name AS Section,
+    q.displayvalue AS Question,
+	Response = 'Photo',
+	CONCAT ('https://mattonicz.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=',c.ContentFileID)AS Photo_Link
+    --q.section_id,
+ 
+FROM
+L01_stage.sfa.dbo_DocumentItems_v q
+ 
+LEFT JOIN L01_stage.sfa.dbo_ResponsesSingleContentD_v r
+ON q.item_id = r.object_id
+ 
+LEFT JOIN l01_stage.sfa.dbo_ContentFiles_v AS c
+ON r.contentid = c.contentid
+ 
+LEFT JOIN L01_Stage.sfa.dbo_DocumentSections_v s
+ON q.Section_ID = s.Section_ID
+ 
+LEFT JOIN L01_Stage.sfa.dbo_QuestionnaireResponseOnVisit_v v
+ON r.Response_ID = v.Response_ID
+AND r.Country_Code = v.Country_Code
+WHERE c.ContentFileID IS NOT NULL
+ 
+) AS unioned
+ 
+ 
+-- For check
+ 
+SELECT * FROM #allresponses
+WHERE Visit_ID = 100000012200161
+ORDER BY Section
