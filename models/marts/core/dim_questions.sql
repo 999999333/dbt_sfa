@@ -84,7 +84,28 @@ final as (
 
         questionnaire.questionnaire_details as questionnaire_details,
 
-        questionnaire.questionnaire_name as questionnaire,
+
+        case
+            when questionnaire.questionnaire_name like N'1 Druhotné vystavenie%'
+            then N'1 Druhotné vystavenie'
+            when questionnaire.questionnaire_name like N'2. Druhotné vystavení pro TT%'
+            then N'2. Druhotné vystavení pro TT'
+            when questionnaire.questionnaire_name like N'2. Druhotné vystavení pro MT%'
+            then N'2. Druhotné vystavení pro MT'
+            when questionnaire.questionnaire_name like '2. On-top%'
+            then '2. On-top'
+            when questionnaire.questionnaire_name like N'2. Pillér form MT%'
+            then N'2. Pillér form MT'
+            when questionnaire.questionnaire_name like N'2. Pillér form SF%'
+            then N'2. Pillér form SF'
+            when questionnaire.questionnaire_name like '6. On-Top MT%'
+            then '6. On-Top MT'
+            when questionnaire.questionnaire_name like '6. On-Top TT%'
+            then '6. On-Top TT'
+            else questionnaire.questionnaire_name
+            
+        end as questionnaire,
+
         questionnaire_section.questionnaire_section_name as section,
         questionnaire_item.questionnaire_question as question,
 
