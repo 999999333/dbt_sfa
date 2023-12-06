@@ -27,7 +27,17 @@ final as (
         sfa_file.sfa_file_name_unique,
         sfa_file.comment,
         sfa_file.is_edited,
-        sfa_file.content_file_key
+        sfa_file.content_file_key,
+        CASE
+            WHEN country_code = 'CZ' THEN
+                CONCAT('https://mattonicz.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
+            WHEN country_code = 'HU' THEN
+                CONCAT('https://mattonihu.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
+            WHEN country_code = 'SK' THEN
+                CONCAT('https://mattonisk.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
+            ELSE
+                NULL
+        END AS image_url
         
 
     from 
