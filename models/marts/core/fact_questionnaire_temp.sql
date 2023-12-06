@@ -79,9 +79,3 @@ WHERE c.ContentFileID IS NOT NULL
  
 ) AS unioned
  
- 
--- For check
- 
-SELECT * FROM #allresponses
-WHERE Visit_ID = 100000012200161
-ORDER BY Section
