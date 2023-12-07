@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: questionnaire_report
+    description: >-
+      Provides unpivoted questionnaire data. 
+
+      For use in PBI, its best to filter questionnaire you are interested in by questionnaire name and then pivot data in PQ.
+    columns:
+      - name: visit_id
+        description: ""
+      - name: visit_question_id
+        description: ""
+      - name: questionnaire_answer
+        description: ""
+      - name: visit_date
+        description: ""
+      - name: visit_key
+        description: ""
+      - name: country_id
+        description: ""
+      - name: questionnaire
+        description: ""
+      - name: section
+        description: ""
+      - name: question
+        description: ""
