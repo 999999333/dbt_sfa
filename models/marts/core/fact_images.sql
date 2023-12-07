@@ -16,6 +16,9 @@ responded_on_visit as (
     select * from {{ ref('stg_sfa__questionnaire_responded_on_visit') }}
 ),
 
+question as (
+    select * from {{ ref('dim_questions') }}
+),
 
 final as (
     select 
@@ -28,12 +31,13 @@ final as (
         sfa_file.comment,
         sfa_file.is_edited,
         sfa_file.content_file_key,
+        {{ dbt_utils.generate_surrogate_key(["responded_on_visit.visit_id", "question.section"]) }} as visit_question_id,
         CASE
-            WHEN country_code = 'CZ' THEN
+            WHEN sfa_file.country_code = 'CZ' THEN
                 CONCAT('https://mattonicz.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
-            WHEN country_code = 'HU' THEN
+            WHEN sfa_file.country_code = 'HU' THEN
                 CONCAT('https://mattonihu.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
-            WHEN country_code = 'SK' THEN
+            WHEN sfa_file.country_code = 'SK' THEN
                 CONCAT('https://mattonisk.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
             ELSE
                 NULL
@@ -47,6 +51,9 @@ final as (
 
     left join responded_on_visit
     on response_image.questionnaire_response_id = responded_on_visit.questionnaire_response_id
+
+    left join question
+    on response_image.question_id = question.question_id
 )
 
 select * from final

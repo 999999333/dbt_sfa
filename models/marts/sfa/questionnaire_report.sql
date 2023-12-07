@@ -19,6 +19,7 @@ visit as (
 final as (
     select 
     response.visit_id,
+    {{ dbt_utils.generate_surrogate_key(["response.visit_id", "question.section"]) }} as visit_question_id,
     response.questionnaire_answer,
     visit.visit_date,
     response.visit_key,
