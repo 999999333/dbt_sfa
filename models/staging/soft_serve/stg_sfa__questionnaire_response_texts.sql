@@ -21,7 +21,7 @@ renamed as (
 
 
         ----------  strings
-        RIGHT({{ adapter.quote("ResponseValue") }}, LEN({{ adapter.quote("ResponseValue") }}) - 2) as questionnaire_answer,
+        {{ adapter.quote("ResponseValue") }} as questionnaire_answer,
 
         {{ adapter.quote("ExternalCode") }} as questionnaire_answer_external_code,
 
