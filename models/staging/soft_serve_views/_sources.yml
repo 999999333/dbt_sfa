@@ -37,3 +37,5 @@ sources:
       - name: dbo_ResponsesH_v
       - name: dbo_Products_v
       - name: dbo_OutLetCardH_v
+      - name: dbo_MobileModuleUser_v
+      - name: dbo_MobileModuleUserTimeTrack_v
