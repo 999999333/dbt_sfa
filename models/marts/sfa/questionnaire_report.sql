@@ -24,6 +24,7 @@ final as (
     visit.visit_date,
     response.visit_key,
     response.country_id,
+    response.questionnaire_answer_step,
     question.questionnaire,
     question.section,
     question.question

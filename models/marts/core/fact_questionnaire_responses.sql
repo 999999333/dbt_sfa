@@ -21,6 +21,7 @@ final as (
         coalesce(response_text.question_id, response_image.question_id) as question_id,
         response_text.questionnaire_answer,
         response_text.questionnaire_answer_external_code,
+        response_text.questionnaire_answer_step,
 
         response_image.sfa_file_id as image_id,
         coalesce(
