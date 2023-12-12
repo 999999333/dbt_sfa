@@ -20,26 +20,48 @@ organizational_structure as (
 
 final as (
     select
-        outlet.outlet_name,
+        
+        ----------  ids
         outlet.outlet_id,
         outlet.organizational_structure_id,
-        outlet.outlet_adress,
-        outlet.outlet_email,
+        custom_field.pricelist_id,
+
         outlet.country_id,
+        outlet.country_code,
+
+        ----------  strings
+        outlet.outlet_name,
+        outlet.outlet_adress,
         outlet.outlet_sap_code,
+        outlet.outlet_email,
         outlet.outlet_director,
         outlet.outlet_trading_name,
         outlet.outlet_delivery_adress,
-        outlet.dlm,
         custom_field.sortiment_type,
-        custom_field.visit_cycle,
-        custom_field.visit_frequency,
-        custom_field.visit_days,
-        custom_field.pricelist_id,
         custom_field.additional_name,
         custom_field.payer,
         organizational_structure.structure_whole_node_tree,
-        organizational_structure.structure_name_detail
+        organizational_structure.structure_name_detail,
+
+        ----------  numerics
+        custom_field.visit_cycle,
+        custom_field.visit_frequency,
+        custom_field.visit_days,
+
+        ----------  booleans
+
+        ----------  timestamps
+        outlet.dlm
+    
+        ----------  omited
+
+
+        
+
+
+
+
+
 
     from 
         outlet

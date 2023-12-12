@@ -31,16 +31,29 @@ first_image as (
 
 final as (
     select 
+        
+
+        ----------  ids
+        sfa_file.sfa_file_id,
+        sfa_file.content_file_key,
         first_image.questionnaire_response_id,
         sfa_file.country_code,
         sfa_file.sfa_file_key,
-        sfa_file.sfa_file_name,
-        sfa_file.sfa_file_id,
+
+        ----------  strings
+        sfa_file.sfa_file_name,    
         sfa_file.sfa_file_name_unique,
         sfa_file.comment,
-        sfa_file.is_edited,
-        sfa_file.content_file_key
-        
+
+        ----------  numerics
+
+        ----------  booleans
+        sfa_file.is_edited
+
+        ----------  timestamps
+    
+        ----------  omited
+
 
     from 
     first_image

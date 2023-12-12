@@ -11,12 +11,28 @@ with inaccessibility_reason as (
 
 final as (
     select
-        --dbt_scd_id,
+
+
+
+        ----------  ids
         inaccessibility_reason_id,
-        inaccessibility_reason,
+        inaccessibility_reason_external_code,
+
         country_id,
         country_code,
-        inaccessibility_reason_external_code
+
+        ----------  strings
+        inaccessibility_reason
+
+        ----------  numerics
+
+        ----------  booleans
+
+        ----------  timestamps
+    
+        ----------  omited
+
+
     from
         inaccessibility_reason
     where

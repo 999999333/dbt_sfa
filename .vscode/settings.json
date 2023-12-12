@@ -4,7 +4,7 @@
     "sqlfluff.linter.run": "onSave",
     "sqlfluff.experimental.format.executeInTerminal": true,
     "editor.formatOnSave": false,
-    "dbt.queryLimit": 500,
+    "dbt.queryLimit": 100,
     "dbt.enableNewLineagePanel": true,
     "turntable.dbtVersion": "1.4",
     "turntable.warehouse": "postgres"

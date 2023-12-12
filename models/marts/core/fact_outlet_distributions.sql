@@ -21,17 +21,29 @@ visit as (
 
 final as (
     select 
+
+        ----------  ids
         outlet_distribution.distribution_id,
         outlet_distribution.visit_id,
         outlet_distribution.product_id,
-        visit.visit_date,
         visit.outlet_id,
         outlet_distribution.country_id,
+
+        ----------  strings
         product.product_name,
-        product.is_pos_material,
         product.product_sap_code,
+
+        ----------  numerics
+        outlet_distribution.price,
+
+        ----------  booleans
+        product.is_pos_material,
         outlet_distribution.is_present,
-        outlet_distribution.price
+
+        ----------  timestamps
+        visit.visit_date
+    
+        ----------  omited
 
     from
         outlet_distribution

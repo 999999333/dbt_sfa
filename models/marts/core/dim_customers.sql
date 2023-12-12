@@ -13,16 +13,12 @@ final as (
     select
         ----------  ids
         customer_id,
-        customer_external_code,
         country_id,
         country_code,
 
         ----------  strings
         customer_name,
-        customer_trading_name,
-        customer_adress,
-        comments,
-        password
+        customer_trading_name
 
         ----------  numerics
 

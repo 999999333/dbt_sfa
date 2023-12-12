@@ -22,26 +22,43 @@ question as (
 
 final as (
     select 
+
+
+
+        ----------  ids
+        {{ dbt_utils.generate_surrogate_key(["responded_on_visit.visit_id", "question.section"]) }} as visit_question_id,
+        sfa_file.sfa_file_id,
         responded_on_visit.visit_id,
         responded_on_visit.visit_key,
         response_image.question_id,
+
+        sfa_file.country_id,
         sfa_file.country_code,
-        sfa_file.sfa_file_id,
+
+        ----------  strings
         sfa_file.sfa_file_name_unique,
-        sfa_file.comment,
-        sfa_file.is_edited,
         sfa_file.content_file_key,
-        {{ dbt_utils.generate_surrogate_key(["responded_on_visit.visit_id", "question.section"]) }} as visit_question_id,
-        CASE
-            WHEN sfa_file.country_code = 'CZ' THEN
-                CONCAT('https://mattonicz.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
-            WHEN sfa_file.country_code = 'HU' THEN
-                CONCAT('https://mattonihu.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
-            WHEN sfa_file.country_code = 'SK' THEN
-                CONCAT('https://mattonisk.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
-            ELSE
+        sfa_file.comment,
+
+        case
+            when sfa_file.country_code = 'CZ' then
+                concat('https://mattonicz.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
+            when sfa_file.country_code = 'HU' then
+                concat('https://mattonihu.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
+            when sfa_file.country_code = 'SK' then
+                concat('https://mattonisk.softservebs.com/swimages/r.im?t=tblOutletCardStartEndImages&v=', sfa_file.content_file_key)
+            else
                 NULL
-        END AS image_url
+        end as image_url,
+
+        ----------  numerics
+
+        ----------  booleans
+        sfa_file.is_edited
+
+        ----------  timestamps
+    
+        ----------  omited
         
 
     from 

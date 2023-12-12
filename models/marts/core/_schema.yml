@@ -4,6 +4,29 @@ models:
     description: Consists of images from SFA application, that belongs to
       questionnaires. It provied names of each file and metadata. Data are
       stored on servers hosted by Soft Serve.
+    columns:
+      - name: questionnaire_response_id
+        description: " The numerical ID associated with the country code, generated
+          using the dbt generate unique key macro."
+      - name: country_code
+        description: ""
+      - name: sfa_file_key
+        description: ""
+      - name: sfa_file_name
+        description: ""
+      - name: sfa_file_id
+        description: " The numerical ID associated with the country code, generated
+          using the dbt generate unique key macro."
+      - name: sfa_file_name_unique
+        description: ""
+      - name: comment
+        description: Comment to image
+      - name: is_edited
+        description: Bool, if image was manipulated with or not. Edited images are very
+          suspect! Edited images should be manully checked why they were
+          manipulated with...
+      - name: content_file_key
+        description: ""
   - name: dim_questions
     description: "Provides all questions inluded in SFA application. They have
       hierarchy, but for ease of use they are in the single table.
@@ -46,19 +69,21 @@ models:
       - name: is_fake_gps
         description: ""
   - name: dim_outlets
-    description: Outlets dimension
+    description: Outlets are all places that are visited/supplied by Mattoni 1873.
     columns:
       - name: outlet_name
         description: ""
       - name: outlet_id
-        description: ""
+        description: Primary key of outlet. The numerical ID associated with the
+          inaccessibility reason key, generated using the dbt generate unique
+          key macro.
         tests:
           - unique
           - not_null
       - name: outlet_adress
-        description: ""
+        description: Adress of of outlet
       - name: outlet_email
-        description: ""
+        description: Email to headrepresentative of outlet
       - name: country_id
         description: ""
       - name: outlet_sap_code
@@ -78,7 +103,8 @@ models:
       - name: visit_days
         description: ""
       - name: pricelist_id
-        description: ""
+        description: The numerical ID associated with the pricelist key, generated using
+          the dbt generate unique key macro.
       - name: additional_name
         description: ""
       - name: payer
@@ -92,18 +118,20 @@ models:
       corresponding sales representative on that route
     columns:
       - name: organizational_structure_id
-        description: ""
+        description: The numerical ID associated with the organizational structure key,
+          generated using the dbt generate unique key macro.
         tests:
           - unique
           - not_null
       - name: staff_id
-        description: ""
+        description: The numerical ID associated with the staff key, generated using the
+          dbt generate unique key macro.
       - name: structure_node_key
         description: ""
       - name: structure_node_level
         description: ""
       - name: structure_node_tree_hierarchy
-        description: ""
+        description: Complete node tree hierarchy in numbers.
       - name: country_id
         description: ""
       - name: country_code
@@ -113,60 +141,131 @@ models:
       - name: staff_name_whole
         description: ""
       - name: staff_name_first
-        description: ""
+        description: First name of sales representative
       - name: staff_name_last
-        description: ""
+        description: Last name of sales representative
       - name: staff_position
         description: ""
       - name: staff_comment
         description: ""
       - name: staff_sap_code
-        description: ""
+        description: SAP external code of that structure
       - name: staff_email
-        description: ""
+        description: E-mail of sales representative
       - name: staff_telephone
-        description: ""
+        description: Phone of the sales representative
   - name: dim_customers
-    description: "Relevant information regarding customers, which are visited by
-      sales representatives during field visits. Customer is somebody "
+    description: Relevant information regarding customers, which are entities of
+      Mattoni that fullfill orders... Example of customer is eg. Mattoni CZ,
+      Mattoni HU. Also it includes default customers for separate app modules
+      (those are not used, yet)
     columns:
       - name: customer_id
-        description: ""
+        description: The numerical ID associated with the country code, generated using
+          the macro.
         tests:
           - unique
           - not_null
-      - name: customer_external_code
-        description: "SAP code that belongs to this customer"
       - name: country_id
-        description: " "
+        description: " The numerical ID associated with the country code, generated
+          using the macro."
       - name: country_code
-        description: " "
+        description: " Country code of customer"
       - name: customer_name
-        description: ""
+        description: Name of customer
       - name: customer_trading_name
-        description: ""
-      - name: customer_adress
-        description: ""
-      - name: comments
-        description: Manually created comment in SFA application. Mainly used for quick
-          notes by sales representatives
-      - name: password
-        description: ""
+        description: Name of main customer
   - name: dim_inaccessibility_reasons
     description: Table with reasons, why sales representative wasn't able to do
       her/his planned visit regarding to plan. In case, there was some comment
       written by sales rep, it will be in visit table itself (fact_visit).
     columns:
       - name: inaccessibility_reason_id
-        description: ""
+        description: The numerical ID associated with the inaccessibility reason key,
+          generated using the dbt generate unique key macro.
         tests:
           - unique
           - not_null
       - name: inaccessibility_reason
         description: Reason itself, text description.
       - name: country_id
-        description: " "
+        description: The numerical ID associated with the country code, generated using
+          the dbt generate unique key macro.
       - name: country_code
-        description: " "
+        description: "  Country code of inaccessibility reason"
       - name: inaccessibility_reason_external_code
+        description: ""
+  - name: dim_kpi
+    description: "KPIs "
+    columns:
+      - name: country_code
+        description: " Country code of KPI"
+      - name: kpi_name
+        description: Name of KPI
+      - name: kpi_level_1
+        description: Top level structure of KPI
+      - name: kpi_level_2
+        description: 2nd level structure of KPI
+      - name: kpi_level_3
+        description: 3rd level structure of KPI
+      - name: kpi_level_4
+        description: 4th level structure of KPI
+      - name: kpi_level_5
+        description: 5th level structure of KPI
+      - name: kpi_level_6
+        description: 6th level structure of KPI
+      - name: kpi_external_code
+        description: ""
+      - name: kpi_description
+        description: ""
+      - name: TYPE
+        description: ""
+      - name: number_of_levels
+        description: ""
+      - name: status
+        description: ""
+      - name: activity
+        description: ""
+      - name: last_modified
+        description: ""
+      - name: kpi_id
+        description: ""
+      - name: parent_id
+        description: ""
+      - name: parent_id_1
+        description: ""
+      - name: parent_id_2
+        description: ""
+      - name: parent_id_3
+        description: ""
+      - name: parent_id_4
+        description: ""
+      - name: parent_id_5
+        description: ""
+      - name: parent_id_6
+        description: ""
+      - name: kpi_country_id
+        description: ""
+  - name: dim_products
+    description: Dimension of products. Contains info about all SKUs that Mattoni
+      sells/ships to its customers.
+    columns: []
+  - name: fact_kpi_plan
+    description: KPI PLAN 12.12.
+    columns:
+      - name: country_code
+        description: AHOKKKKKKKKJJ
+      - name: period
+        description: ""
+      - name: date_to
+        description: ""
+      - name: plan_value
+        description: ""
+      - name: outlet_id
+        description: ""
+      - name: kpi_id
+        description: ""
+      - name: kpi_outlet_id
+        description: ""
+      - name: dlm
         description: ""
