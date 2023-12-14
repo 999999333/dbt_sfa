@@ -89,7 +89,7 @@ final as (
             when questionnaire.questionnaire_name like N'1 Druhotné vystavenie%'
             then N'1 Druhotné vystavenie'
             when questionnaire.questionnaire_name like N'2. Druhotné vystavení pro TT%'
-            then N'd'
+            then N'2. Druhotné vystavení pro TT'
             when questionnaire.questionnaire_name like N'2. Druhotné vystavení pro MT%'
             then N'2. Druhotné vystavení pro MT'
             when questionnaire.questionnaire_name like '2. On-top%'

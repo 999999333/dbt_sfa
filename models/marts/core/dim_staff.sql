@@ -42,7 +42,7 @@ final as (
         staff.staff_name_first,
         staff.staff_name_last,
         staff.staff_email,
-        staff.staff_telephone,        
+        staff.staff_telephone        
 
         ----------  numerics
 
