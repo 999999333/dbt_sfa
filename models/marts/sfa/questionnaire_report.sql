@@ -1,6 +1,7 @@
 {{
     config(
-        materialized = 'table'
+        materialized = 'incremental',
+        unique_key = 'visit_question_id'
     )
 }}
 
@@ -34,6 +35,13 @@ final as (
     on response.question_id = question.question_id
     left join visit
     on response.visit_id = visit.visit_id
+
+    {% if is_incremental() %}
+
+        where visit_date > (select max(visit_date) from {{ this }})
+
+    {% endif %}
+
 
 )
 
