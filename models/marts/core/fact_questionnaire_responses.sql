@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized = 'table'
+    )
+}}
+
 with responded_on_visit as (
     select * from {{ ref('stg_sfa__questionnaire_responded_on_visit') }}
 ),
