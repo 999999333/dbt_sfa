@@ -16,7 +16,8 @@ start_coordinates as (
         day_end_time,
         start_latitude as latitude,
         start_longitude as longtitude,
-        'start' as geotype
+        'start' as geotype,
+        datediff(second, day_start_time, day_end_time) AS duration_seconds
 
     from 
         mobile_tracking
@@ -30,7 +31,8 @@ end_coordinates as (
         day_end_time,
         end_latitude as latitude,
         end_longitude as longtitude,
-        'end' as geotype
+        'end' as geotype,
+        datediff(second, day_start_time, day_end_time) as duration_seconds
 
     from 
         mobile_tracking
