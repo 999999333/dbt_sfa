@@ -1,7 +1,6 @@
 {{
     config(
-        materialized = 'incremental',
-        unique_key = 'visit_question_id'
+        materialized = 'table'
     )
 }}
 
