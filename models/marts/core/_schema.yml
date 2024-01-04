@@ -23,7 +23,7 @@ models:
         description: Comment to image
       - name: is_edited
         description: Bool, if image was manipulated with or not. Edited images are very
-          suspect! Edited images should be manully checked why they were
+          suspect! Edited images should be manually checked, why they were
           manipulated with...
       - name: content_file_key
         description: ""
