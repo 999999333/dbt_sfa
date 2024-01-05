@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: sap
+    database: L01_Stage
+    schema: sap
+    tables:
+        - name: product_now_dvt_c_hv
+        - name: customer_now_dvt_c_hv

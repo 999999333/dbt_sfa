@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: core
+    database: L10_Core
+    schema: dbo
+    tables:
+        - name: FXR_AVG_vs_BGT_Main_Currency_v
+        - name: Currency_c
+        - name: Calendar_v

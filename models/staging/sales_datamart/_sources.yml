@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: sales_datamart
+    database: L30_DM_Sales
+    schema: pbi
+    tables:
+        - name: dim_Entity
+        - name: dim_Country
+        - name: dim_Customer
+        - name: dim_Product
+        - name: dim_Call_Representative
