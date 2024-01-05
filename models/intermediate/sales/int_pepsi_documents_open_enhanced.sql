@@ -78,7 +78,7 @@ final as (
             on document.document_date_id = fx.calendar_id
             and country.currency_id = fx.from_currency_id
             and 137 = fx.to_currency_id
---            and document.country_id = fx.country_id
+            --and document.country_id = fx.country_id
 
 	where
 		product.material_type_code = 'FERT'
@@ -97,4 +97,3 @@ final as (
 )
 
 select * from final 
-
