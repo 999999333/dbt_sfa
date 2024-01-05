@@ -15,7 +15,7 @@ country as (
 ),
 
 product as (
-	select * from {{ ref('stg_dwh__dim_products') }}
+	select * from {{ ref('stg_sap__products') }}
 ),
 
 customer as (
