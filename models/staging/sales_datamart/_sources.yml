@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: sales_datamart
+  - name: pbi
     database: L30_DM_Sales
     schema: pbi
     tables:
