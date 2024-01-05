@@ -21,7 +21,7 @@ renamed as (
         {{ adapter.quote("ship_to_customer_id") }},
         {{ adapter.quote("bill_to_customer_id") }},
         {{ adapter.quote("payer_customer_id") }},
-        {{ adapter.quote("sold_by_cr_id") }},
+        {{ adapter.quote("sold_by_cr_id") }} as call_representative_id,
         {{ adapter.quote("sales_route_id") }},
         {{ adapter.quote("distributor_id") }},
         {{ adapter.quote("product_id") }},
