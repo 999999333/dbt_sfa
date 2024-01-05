@@ -27,9 +27,9 @@ final as (
 		calendar.last_of_month as calendar_id,
 		country.country_id as country_id,
 		entity.entity_id as entity_id,
-		coalesce(sold_to.customer_id, -1) as sold_to_id,
-		coalesce(ship_to.customer_id, -1) as ship_to_id,
-		coalesce(payer.customer_id, -1) as payer_id,
+		coalesce(document.soldto_customer_id, -1) as sold_to_id,
+		coalesce(document.shipto_customer_id, -1) as ship_to_id,
+		coalesce(document.payer_customer_id, -1) as payer_id,
 		-1 as call_representative_id,
 		coalesce(product.local_sku_id, -1) as local_sku_id,
 		sum(document.piece_quantity) as piece_quantity,
@@ -72,9 +72,9 @@ final as (
 		calendar.last_of_month,
 		country.country_id,
 		entity.entity_id,
-		sold_to.customer_id,
-		ship_to.customer_id,
-		payer.customer_id,
+		document.soldto_customer_id,
+		document.shipto_customer_id,
+		document.payer_customer_id,
 		product.local_sku_id
 )
 
