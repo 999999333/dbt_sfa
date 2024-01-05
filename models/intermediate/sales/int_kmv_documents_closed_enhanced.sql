@@ -62,7 +62,7 @@ final as (
 			on document.shipto_customer_id = ship_to.customer_id
 
 		left join customer as payer
-			on document.shipto_customer_id = payer.customer_id
+			on document.payer_customer_id = payer.customer_id
 
 	where
 		product.material_type_code = 'FERT'
