@@ -3,11 +3,8 @@ with source as (
 ),
 renamed as (
     select
-        {{ adapter.quote("Currency_Id") }},
-        {{ adapter.quote("Currency_Code") }},
-        {{ adapter.quote("Currency_Label") }},
-        {{ adapter.quote("Mattoni_Main_Currency_flag") }},
-        {{ adapter.quote("FXR_Calculation_flag") }}
+        {{ adapter.quote("Currency_Id") }} as currency_id,
+        {{ adapter.quote("Currency_Code") }} as currency_code
 
     from source
 )

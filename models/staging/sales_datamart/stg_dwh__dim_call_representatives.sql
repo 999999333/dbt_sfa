@@ -3,10 +3,8 @@ with source as (
 ),
 renamed as (
     select
-        {{ adapter.quote("Call_Representative_Id") }},
-        {{ adapter.quote("Country_Id") }},
-        {{ adapter.quote("Call_Representative_Label") }},
-        {{ adapter.quote("Call_Representative_Route_Type_Label") }}
+        {{ adapter.quote("Call_Representative_Id") }} as call_representative_id,
+        {{ adapter.quote("Call_Representative_Label") }} as call_representative_label
 
     from source
 )

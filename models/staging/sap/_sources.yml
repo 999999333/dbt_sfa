@@ -2,8 +2,17 @@ version: 2
 
 sources:
   - name: sap
-    database: L01_Stage
+    database: L01_Stage 
     schema: sap
     tables:
         - name: product_now_dvt_c_hv
         - name: customer_now_dvt_c_hv
+        - name: bad_with_cost_closed_v
+        - name: bad_with_cost_open_v
+        
+  - name: kmv
+    database: L01_Stage 
+    schema: kmv
+    tables:
+        - name: consolidated_closed_v
+        - name: consolidated_open_v

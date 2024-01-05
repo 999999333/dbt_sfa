@@ -3,13 +3,9 @@ with source as (
 ),
 renamed as (
     select
-        {{ adapter.quote("Entity_Id") }},
-        {{ adapter.quote("Entity_Code") }},
-        {{ adapter.quote("Entity_Label") }},
-        {{ adapter.quote("Country_Id") }},
-        {{ adapter.quote("Entity_PA_Code") }},
-        {{ adapter.quote("Group_Name") }},
-        {{ adapter.quote("Entity_SAP_Code") }}
+        {{ adapter.quote("Entity_Id") }} as entity_id,
+        {{ adapter.quote("Country_Id") }} as country_id,
+        {{ adapter.quote("Entity_SAP_Code") }} as entity_sap_code
 
     from source
 )

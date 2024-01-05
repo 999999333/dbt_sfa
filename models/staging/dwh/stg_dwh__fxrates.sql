@@ -3,15 +3,10 @@ with source as (
 ),
 renamed as (
     select
-        {{ adapter.quote("Calendar_Id") }},
-        {{ adapter.quote("Data_Source") }},
-        {{ adapter.quote("FXR_Type_Id") }},
-        {{ adapter.quote("FXR_Type_Label") }},
-        {{ adapter.quote("Currency_Id_Buy") }},
-        {{ adapter.quote("Currency_Code_Buy") }},
-        {{ adapter.quote("Currency_Id_Sell") }},
-        {{ adapter.quote("Currency_Code_Sell") }},
-        {{ adapter.quote("Rate") }}
+        {{ adapter.quote("Calendar_Id") }} as calendar_id,
+        {{ adapter.quote("Currency_Id_Buy") }} as from_currency_id,
+        {{ adapter.quote("Currency_Id_Sell") }} as to_currency_id,
+        {{ adapter.quote("Rate") }} as fx_rate
 
     from source
 )
