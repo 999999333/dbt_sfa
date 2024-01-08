@@ -1,3 +1,11 @@
+{{
+    config(
+        materialized = 'view',
+		tags = "monthly"
+    )
+}}
+
+
 with document as (
 	select * from {{ ref('stg_sap__documents_closed') }}
 ),
