@@ -45,7 +45,7 @@ final as (
 		sum(document.oz8_quantity) as oz8_quantity,
 		sum(document.rrc_quantity) as rrc_quantity,
 		sum(document.net_revenue_lc) as net_revenue_lc,
-		coalesce(sum(document.net_revenue_lc * fx.fx_rate), 0) as net_revenue_czk
+		coalesce(sum(document.net_revenue_lc * fx.fx_rate), 0) as net_revenue_czk -- novz komentar
 	
 	from 
 		document
