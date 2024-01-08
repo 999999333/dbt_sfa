@@ -1,4 +1,6 @@
 
-target/
+target/SFA*
+target/compiled
+target/run
 dbt_packages/
 logs/
