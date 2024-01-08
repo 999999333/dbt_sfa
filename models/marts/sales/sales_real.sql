@@ -26,7 +26,7 @@ final as (
             ref('int_kmv_documents_closed_enhanced'),
             ref('int_kmv_documents_open_enhanced'),
             ref('int_pepsi_documents_closed_enhanced'),
-            ref('int_pepsi_documents_open_enhanced'),
+            ref('int_pepsi_documents_open_enhanced')
             ]
         )
     }}
