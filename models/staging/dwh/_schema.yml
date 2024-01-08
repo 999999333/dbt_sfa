@@ -1,0 +1,25 @@
+version: 2
+
+models:  
+  - name: stg_dwh__calendar
+    description: Calendar Table from L30_DM_Sales
+    columns:
+      - name: calendar_id
+        description: Calendar Id Integer
+      - name: Last_Of_Month
+        description: Last day of the month integer
+  - name: stg_dwh__currencies
+    description: Currency Table from L30_DM_Sales
+    columns:
+      - name: currency_id
+        description: Permanent Currency Id 
+      - name: currency_code
+        description: Currency Code (ISO 4217)
+  - name: stg_dwh__fx_rates
+    description: Currency Table from L30_DM_Sales
+    columns:
+      - name: currency_id
+        description: Permanent Currency Id 
+      - name: currency_code
+        description: Currency Code (ISO 4217)
+    

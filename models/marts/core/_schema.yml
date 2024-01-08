@@ -41,7 +41,7 @@ models:
   - name: fact_questionnaire_responses
     description: Provides all answers and references to question asked, visit and
       data with according `_id`.
-  - name: inaccessibility_reasons
+  - name: dim_inaccessibility_reasons
     description: Dimension of reasons, why there were planned visit not realised.
   - name: dim_visit_gps
     description: ""
