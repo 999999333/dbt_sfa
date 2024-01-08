@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_dwh__dim_products
+    description: ""
+    columns:
+      - name: product_id
+        description: "ID of product"
+        tests:
+          - unique
+          - not null
+      - name: sku_code
+        description: SAP code of product
+  - name: stg_dwh__dim_countries
+    description: Countries dimension contains info about each country and what
+      currency used in each country.
+    columns:
+      - name: country_id
+        description: ID of country
+      - name: currency_id
+        description: Reference to currency that is used in that country
+  - name: stg_dwh__dim_entities
+    description: Connects entities (eg. Mattoni, Schenkyralyi, Kjanz Milos..)
+      together with countries and coresponding SAP codes that belong together.
+      Entitity represent company from Mattoni 1873 portfolio, that can fulfill
+      orders.
+    columns:
+      - name: entity_id
+        description: ID of entity
+      - name: country_id
+        description: Reference to coutry dim
+      - name: entity_sap_code
+        description: SAP code of entity used in KMV & PEPSI application

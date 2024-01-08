@@ -1,0 +1,39 @@
+version: 2
+models:
+  - name: sales_real
+    description: Combines data from four tables, which contain enhanced information
+      about sales documents in the 'KMV' and 'PEPSI' SAP systems. The model is
+      used to provide a consolidated view of all sales by Mattoni 1873, both
+      open and closed, for analysis and reporting purposes.
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+      - name: calendar_id
+        description: Last day of month, when was order realized.
+      - name: country_id
+        description: Reference to country table.
+      - name: entity_id
+        description: Reference to entity table.
+      - name: sold_to_id
+        description: Reference to customer dim.
+      - name: ship_to_id
+        description: Reference to customer dim.
+      - name: payer_id
+        description: Reference to customer dim.
+      - name: call_representative_id
+        description: "Reference to Call representative table for "
+      - name: local_sku_id
+        description: ""
+      - name: piece_quantity
+        description: ""
+      - name: liter_quantity
+        description: ""
+      - name: oz8_quantity
+        description: "Oz8 quantity. For snacks its kgs of sold snacks. "
+      - name: rrc_quantity
+        description: Real row case quantity in order.
+      - name: net_revenue_lc
+        description: Revenue in local currency it was invoiced in.
+      - name: net_revenue_czk
+        description: Revenue in Czech koruna. Calculated from local currency using Czech
+          national bank exchange rate valid on day of transaction.
