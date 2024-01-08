@@ -8,7 +8,7 @@ models:
         description: "ID of product"
         tests:
           - unique
-          - not null
+          - not_null
       - name: sku_code
         description: SAP code of product
   - name: stg_dwh__dim_countries
