@@ -1,6 +1,8 @@
 version: 2
 models:
   - name: sales_real
+    config:
+      tags: Jiri Liska
     description: Combines data from four tables, which contain enhanced information
       about sales documents in the 'KMV' and 'PEPSI' SAP systems. The model is
       used to provide a consolidated view of all sales by Mattoni 1873, both
@@ -8,6 +10,9 @@ models:
     columns:
       - name: _dbt_source_relation
         description: ""
+        tests:
+          - unique
+          - not_null
       - name: calendar_id
         description: Last day of month, when was order realized.
       - name: country_id
