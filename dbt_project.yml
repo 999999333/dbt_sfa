@@ -34,6 +34,7 @@ models:
   staging:
     # Config indicated by + and applies to all files under models/example/
       +materialized: view
+      +tags: Karel Vitek
 
 snapshots:
   SFA:
