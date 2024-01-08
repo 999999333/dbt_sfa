@@ -1,0 +1,35 @@
+version: 2
+models:
+  - name: int_kmv_documents_closed_enhanced
+    config:
+      tags: Jiri Liska
+    description: Data from closed months in KMV SAP. Recalculated monthly
+    columns:
+      - name: calendar_id
+        description: ""
+      - name: country_id
+        description: ""
+      - name: entity_id
+        description: ""
+      - name: sold_to_id
+        description: ""
+      - name: ship_to_id
+        description: ""
+      - name: payer_id
+        description: ""
+      - name: call_representative_id
+        description: ""
+      - name: local_sku_id
+        description: ""
+      - name: piece_quantity
+        description: ""
+      - name: liter_quantity
+        description: ""
+      - name: oz8_quantity
+        description: ""
+      - name: rrc_quantity
+        description: ""
+      - name: net_revenue_lc
+        description: ""
+      - name: net_revenue_czk
+        description: ""
