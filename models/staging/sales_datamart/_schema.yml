@@ -31,22 +31,4 @@ models:
         description: Reference to coutry dim
       - name: entity_sap_code
         description: SAP code of entity used in KMV & PEPSI application
-  - name: stg_dwh__dim_customers
-    description: Customer table from L30_DM_Sales
-    columns:
-      - name: customer_id
-        description: Customer Id generated as new every day
-      - name: customer_segment_id
-        description: Customer Segment Id - Foreign key to L30_DM_Sales.pbi.dim_Customer_Segment
-      - name: country_id
-        description: Country Id - Foreign key to L30_DM_Sales.pbi.dim_Country
-      - name: customer_source_code
-        description: SAP Customer Code - unique only in combination with country_id
-  - name: stg_dwh_dim_call_representatives
-    description: Table of Call Representatives in L30_DM_Sales
-    columns: 
-      - name: call_representative_id
-        description: Permanent Call Representative Id
-      - name: call_representative_label
-        description: Call Representative Surname and Name
-  
+      - name: 
