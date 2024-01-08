@@ -83,7 +83,7 @@ final as (
 	where
 		product.material_type_code = 'FERT'
         and entity.entity_sap_code = 'PEPSI'
-		and document.document_date_id >= 20220000
+		and document.document_date_id >= {{ var('months_to_refresh') }}
 
 	group by 
 		calendar.last_of_month,
