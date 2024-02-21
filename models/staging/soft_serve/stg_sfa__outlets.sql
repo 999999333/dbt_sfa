@@ -53,7 +53,7 @@ renamed as (
         {{ adapter.quote("ParentComp_id") }} as parent_company_id,
         {{ adapter.quote("Cust_id") }} as customer_id,
         {{ adapter.quote("AT_ID") }} as at_id,
-        {{ adapter.quote("OrgStructureID") }} as organizational_structure_id,
+        {{ dbt_utils.generate_surrogate_key(["Country_Code", "OrgStructureID"]) }} as organizational_structure_id,
         {{ adapter.quote("GeographyID") }} as geography_id,
         {{ adapter.quote("ExternalFormat_ID") }} as external_format_id,
         {{ adapter.quote("HouseId") }} as house_id,
