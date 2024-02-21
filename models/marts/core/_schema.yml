@@ -38,9 +38,67 @@ models:
         tests:
           - unique
           - not_null
+        description: Primary key
+      - name: visit_key
+        description: ""
+      - name: country_id
+        description: ""
+      - name: country_code
+        description: ""
+      - name: inaccessibility_reason_id
+        description: Reference to inaccessibility reason
+      - name: outlet_id
+        description: Reference to outlet
+      - name: route_id
+        description: Reference to route
+      - name: organizational_structure_id
+        description: Reference to org structure
+      - name: customer_id
+        description: Reference to customer
+      - name: visit_comment
+        description: Comment to visit by sales representative
+      - name: visit_start_distance
+        description: Distance of start of vistit to outlet adrress in SFA
+      - name: visit_end_distance
+        description: Distance of end of vistit to outlet adrress in SFA
+      - name: visit_duration_sec
+        description: Duration of visit in seconds
+      - name: is_quick_order
+        description: ""
+      - name: visit_date
+        description: Date of visit
+      - name: visit_start_time
+        description: Start time of visit
+      - name: visit_end_time
+        description: End time of visit
   - name: fact_questionnaire_responses
     description: Provides all answers and references to question asked, visit and
       data with according `_id`.
+    columns:
+      - name: visit_id
+        description: Reference to visit
+      - name: visit_key
+        description: ""
+      - name: questionnaire_response_id
+        description: ""
+      - name: questionnaire_response_key
+        description: ""
+      - name: country_id
+        description: Reference to country
+      - name: question_id
+        description: Reference to question
+      - name: questionnaire_answer
+        description: ""
+      - name: questionnaire_answer_external_code
+        description: ""
+      - name: questionnaire_answer_step
+        description: ""
+      - name: image_id
+        description: Reference to image
+      - name: sfa_file_id
+        description: ""
+      - name: image_question_id
+        description: ""
   - name: dim_visit_gps
     description: ""
     columns:
@@ -83,15 +141,15 @@ models:
       - name: outlet_email
         description: Email to headrepresentative of outlet
       - name: country_id
-        description: ""
+        description: Reference to country table
       - name: outlet_sap_code
         description: ""
       - name: outlet_director
-        description: ""
+        description: Name of branch director
       - name: outlet_trading_name
         description: ""
       - name: outlet_delivery_adress
-        description: ""
+        description: Adress of outlet
       - name: sortiment_type
         description: ""
       - name: visit_cycle
@@ -192,9 +250,11 @@ models:
       - name: country_code
         description: "  Country code of inaccessibility reason"
       - name: inaccessibility_reason_external_code
-        description: ""
+        description: SAP code of inaccessibility reason
   - name: dim_kpi
-    description: "KPIs "
+    description: Contains structured and described KPIs. KPIs are values that Sales
+      representative should attain during their visits... for example secondary
+      (on-top)  exposures of products
     columns:
       - name: country_code
         description: " Country code of KPI"
@@ -221,11 +281,11 @@ models:
       - name: number_of_levels
         description: ""
       - name: status
-        description: ""
+        description: If is this KPI currently used or not
       - name: activity
         description: ""
       - name: last_modified
-        description: ""
+        description: Date of last modification in SFA
       - name: kpi_id
         description: ""
       - name: parent_id
